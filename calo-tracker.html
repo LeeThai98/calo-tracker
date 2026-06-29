@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+<meta name="apple-mobile-web-app-title" content="Calo Tracker"/>
+<meta name="theme-color" content="#f7f7f5"/>
+<title>Calo Tracker</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+:root{
+  --bg:#f7f7f5;--surface:#ffffff;--surface2:#f0efec;
+  --text:#0b0b0b;--text2:#52514e;--muted:#898781;
+  --border:rgba(11,11,11,0.10);--border2:rgba(11,11,11,0.18);
+  --green:#1baf7a;--green-bg:#e6f7f1;--green-text:#0a6b49;
+  --blue:#2a78d6;--blue-bg:#e8f1fb;--blue-text:#1a4f9c;
+  --amber:#eda100;--amber-bg:#fef3d8;--amber-text:#7a5200;
+  --red:#e24b4a;--red-bg:#fdeaea;--red-text:#8b1f1f;
+  --radius:10px;--safe-top:env(safe-area-inset-top);
+  --safe-bottom:env(safe-area-inset-bottom);
+}
+@media(prefers-color-scheme:dark){
+  :root{
+    --bg:#111110;--surface:#1e1e1c;--surface2:#2a2a28;
+    --text:#ffffff;--text2:#c3c2b7;--muted:#898781;
+    --border:rgba(255,255,255,0.10);--border2:rgba(255,255,255,0.18);
+    --green-bg:#0a3d28;--green-text:#5dd4a8;
+    --blue-bg:#0d2a4d;--blue-text:#82b8f5;
+    --amber-bg:#3d2c00;--amber-text:#f5c842;
+    --red-bg:#3d0f0f;--red-text:#f07070;
+  }
+}
+html,body{height:100%;font-family:-apple-system,BlinkMacSystemFont,'SF Pro Text',sans-serif;background:var(--bg);color:var(--text);font-size:16px}
+body{display:flex;flex-direction:column;overflow:hidden}
+
+/* NAV */
+.nav{background:var(--surface);border-bottom:0.5px solid var(--border);padding:calc(var(--safe-top) + 12px) 16px 12px;flex-shrink:0}
+.nav-inner{display:flex;justify-content:space-between;align-items:center}
+.nav h1{font-size:17px;font-weight:600;letter-spacing:-0.3px}
+.nav-date{font-size:12px;color:var(--muted);margin-top:2px}
+.btn-reset{background:none;border:none;font-size:13px;color:var(--muted);cursor:pointer;padding:4px 8px;border-radius:6px}
+.btn-reset:active{background:var(--surface2)}
+
+/* TABS */
+.tabs{display:flex;background:var(--surface);border-bottom:0.5px solid var(--border);flex-shrink:0}
+.tab{flex:1;padding:10px 0;font-size:13px;font-weight:500;text-align:center;border:none;background:none;color:var(--muted);cursor:pointer;border-bottom:2px solid transparent;transition:all .2s}
+.tab.active{color:var(--blue);border-bottom-color:var(--blue)}
+
+/* SCROLL AREA */
+.scroll{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;padding:0 0 calc(var(--safe-bottom) + 80px)}
+
+/* SUMMARY CARDS */
+.summary{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:14px 14px 0}
+.card{background:var(--surface);border:0.5px solid var(--border);border-radius:12px;padding:12px 14px}
+.card-wide{grid-column:1/-1}
+.card-label{font-size:11px;color:var(--muted);margin-bottom:6px}
+.card-val{font-size:24px;font-weight:600;letter-spacing:-0.5px;line-height:1}
+.card-val small{font-size:13px;font-weight:400;color:var(--muted)}
+.card-sub{font-size:12px;color:var(--muted);margin-top:4px}
+.badge{display:inline-block;font-size:11px;padding:2px 8px;border-radius:20px;font-weight:500;margin-top:6px}
+.badge-ok{background:var(--green-bg);color:var(--green-text)}
+.badge-warn{background:var(--amber-bg);color:var(--amber-text)}
+.badge-over{background:var(--red-bg);color:var(--red-text)}
+
+/* PROGRESS */
+.prog-wrap{margin-top:10px}
+.prog-row{display:flex;justify-content:space-between;font-size:11px;color:var(--muted);margin-bottom:4px}
+.prog-bar{height:5px;border-radius:3px;background:var(--surface2);overflow:hidden}
+.prog-fill{height:100%;border-radius:3px;transition:width .4s ease}
+
+/* MACRO */
+.macro-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-top:10px}
+.macro-item{background:var(--surface2);border-radius:8px;padding:8px 10px}
+.macro-name{font-size:10px;color:var(--muted);margin-bottom:4px;text-transform:uppercase;letter-spacing:.5px}
+.macro-val{font-size:14px;font-weight:600}
+.macro-sub{font-size:10px;color:var(--muted);margin-top:1px}
+
+/* LOG */
+.section-head{font-size:12px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.6px;padding:16px 14px 8px}
+.log-list{padding:0 14px;display:flex;flex-direction:column;gap:6px}
+.log-item{background:var(--surface);border:0.5px solid var(--border);border-radius:10px;padding:10px 12px;display:flex;align-items:center;gap:10px}
+.log-icon{width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0}
+.log-icon-food{background:var(--green-bg)}
+.log-icon-ex{background:var(--blue-bg)}
+.log-info{flex:1;min-width:0}
+.log-name{font-size:14px;font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.log-time{font-size:11px;color:var(--muted);margin-top:1px}
+.log-cal{font-size:15px;font-weight:600;color:var(--text);flex-shrink:0}
+.log-cal.neg{color:var(--blue)}
+.btn-del{background:none;border:none;cursor:pointer;color:var(--muted);font-size:20px;padding:0 2px;line-height:1;flex-shrink:0}
+.btn-del:active{color:var(--red)}
+.empty{text-align:center;padding:40px 20px;color:var(--muted);font-size:14px}
+.empty-icon{font-size:36px;margin-bottom:8px}
+
+/* FAB */
+.fab{position:fixed;bottom:calc(var(--safe-bottom) + 20px);right:20px;width:56px;height:56px;border-radius:28px;background:var(--blue);border:none;color:#fff;font-size:28px;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 16px rgba(42,120,214,0.35);z-index:100;transition:transform .15s}
+.fab:active{transform:scale(0.93)}
+
+/* BOTTOM SHEET */
+.overlay{position:fixed;inset:0;background:rgba(0,0,0,0.4);z-index:200;opacity:0;pointer-events:none;transition:opacity .25s}
+.overlay.show{opacity:1;pointer-events:all}
+.sheet{position:fixed;bottom:0;left:0;right:0;background:var(--surface);border-radius:20px 20px 0 0;z-index:201;padding:0 16px calc(var(--safe-bottom) + 16px);transform:translateY(100%);transition:transform .3s cubic-bezier(.4,0,.2,1)}
+.sheet.show{transform:translateY(0)}
+.sheet-handle{width:36px;height:4px;border-radius:2px;background:var(--border2);margin:10px auto 16px}
+.sheet-title{font-size:17px;font-weight:600;margin-bottom:16px;text-align:center}
+.field{margin-bottom:12px}
+.field label{display:block;font-size:12px;color:var(--muted);margin-bottom:6px;font-weight:500}
+.field input{width:100%;height:44px;padding:0 12px;font-size:16px;border:0.5px solid var(--border2);border-radius:10px;background:var(--surface2);color:var(--text);outline:none}
+.field input:focus{border-color:var(--blue)}
+.type-toggle{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:16px}
+.type-btn{padding:12px;border-radius:10px;border:0.5px solid var(--border2);background:var(--surface2);color:var(--text2);font-size:14px;font-weight:500;cursor:pointer;text-align:center;transition:all .15s}
+.type-btn.selected{border-color:var(--blue);background:var(--blue-bg);color:var(--blue-text)}
+.btn-save{width:100%;height:48px;border-radius:12px;background:var(--blue);color:#fff;font-size:16px;font-weight:600;border:none;cursor:pointer;margin-top:4px}
+.btn-save:active{opacity:.85}
+
+/* HISTORY TAB */
+.history-item{background:var(--surface);border:0.5px solid var(--border);border-radius:10px;padding:12px 14px;margin-bottom:8px}
+.history-date{font-size:12px;color:var(--muted);margin-bottom:6px}
+.history-row{display:flex;justify-content:space-between;font-size:14px}
+.history-row span:last-child{font-weight:600}
+</style>
+</head>
+<body>
+
+<div class="nav">
+  <div class="nav-inner">
+    <div>
+      <h1>Calo Tracker</h1>
+      <div class="nav-date" id="nav-date"></div>
+    </div>
+    <button class="btn-reset" onclick="resetDay()">Xóa hôm nay</button>
+  </div>
+</div>
+
+<div class="tabs">
+  <button class="tab active" onclick="switchTab('today',this)">Hôm nay</button>
+  <button class="tab" onclick="switchTab('history',this)">Lịch sử</button>
+</div>
+
+<div class="scroll" id="tab-today">
+  <!-- Summary -->
+  <div class="summary">
+    <div class="card card-wide">
+      <div class="card-label">Còn lại hôm nay</div>
+      <div class="card-val" id="sum-net">1.870 <small>kcal</small></div>
+      <div class="prog-wrap">
+        <div class="prog-row"><span id="sum-pct">0%</span><span>1.870 kcal mục tiêu</span></div>
+        <div class="prog-bar"><div class="prog-fill" id="prog-main" style="width:0%;background:var(--blue)"></div></div>
+      </div>
+      <div class="badge badge-ok" id="status-badge">Đang tốt</div>
+    </div>
+    <div class="card">
+      <div class="card-label">Đã nạp</div>
+      <div class="card-val" id="sum-eaten">0 <small>kcal</small></div>
+      <div class="card-sub" id="sum-meals">0 bữa</div>
+    </div>
+    <div class="card">
+      <div class="card-label">Đã đốt</div>
+      <div class="card-val" id="sum-burned">0 <small>kcal</small></div>
+      <div class="card-sub" id="sum-ex">0 hoạt động</div>
+    </div>
+  </div>
+
+  <!-- Macros -->
+  <div class="macro-grid" style="padding:0 14px;margin-top:10px">
+    <div class="macro-item">
+      <div class="macro-name">Protein</div>
+      <div class="macro-val" id="mac-p">0g</div>
+      <div class="macro-sub" id="mac-p-sub">/ 158g</div>
+      <div class="prog-bar" style="margin-top:6px"><div class="prog-fill" id="bar-p" style="width:0%;background:var(--green)"></div></div>
+    </div>
+    <div class="macro-item">
+      <div class="macro-name">Carb</div>
+      <div class="macro-val" id="mac-c">0g</div>
+      <div class="macro-sub" id="mac-c-sub">/ 193g</div>
+      <div class="prog-bar" style="margin-top:6px"><div class="prog-fill" id="bar-c" style="width:0%;background:var(--blue)"></div></div>
+    </div>
+    <div class="macro-item">
+      <div class="macro-name">Chất béo</div>
+      <div class="macro-val" id="mac-f">0g</div>
+      <div class="macro-sub" id="mac-f-sub">/ 62g</div>
+      <div class="prog-bar" style="margin-top:6px"><div class="prog-fill" id="bar-f" style="width:0%;background:var(--amber)"></div></div>
+    </div>
+  </div>
+
+  <!-- Log -->
+  <div class="section-head">Ghi chép hôm nay</div>
+  <div class="log-list" id="log-list">
+    <div class="empty" id="empty-msg">
+      <div class="empty-icon">🍽️</div>
+      Chưa có ghi chép nào.<br>Bấm + để thêm bữa ăn hoặc vận động
+    </div>
+  </div>
+</div>
+
+<div class="scroll" id="tab-history" style="display:none;padding:14px">
+  <div id="history-list"><div class="empty"><div class="empty-icon">📅</div>Chưa có lịch sử</div></div>
+</div>
+
+<!-- FAB -->
+<button class="fab" onclick="openSheet()" aria-label="Thêm">+</button>
+
+<!-- Sheet overlay -->
+<div class="overlay" id="overlay" onclick="closeSheet()"></div>
+<div class="sheet" id="sheet">
+  <div class="sheet-handle"></div>
+  <div class="sheet-title">Thêm ghi chép</div>
+  <div class="type-toggle">
+    <button class="type-btn selected" id="type-food" onclick="selType('food')">🍚 Bữa ăn</button>
+    <button class="type-btn" id="type-ex" onclick="selType('exercise')">🚶 Vận động</button>
+  </div>
+  <div class="field">
+    <label id="name-label">Tên món ăn</label>
+    <input type="text" id="inp-name" placeholder="Ví dụ: Cơm gà, Phở bò..." autocomplete="off"/>
+  </div>
+  <div class="field">
+    <label>Calo (kcal)</label>
+    <input type="number" id="inp-cal" placeholder="0" min="0" inputmode="numeric"/>
+  </div>
+  <button class="btn-save" onclick="saveItem()">Lưu</button>
+</div>
+
+<script>
+const GOAL=1870;
+const P_TARGET=158,C_TARGET=193,F_TARGET=62;
+let curType='food';
+
+function todayKey(){return 'ct_'+new Date().toISOString().slice(0,10)}
+function getLogs(){try{return JSON.parse(localStorage.getItem(todayKey())||'[]')}catch{return[]}}
+function saveLogs(l){localStorage.setItem(todayKey(),JSON.stringify(l))}
+function getAllKeys(){return Object.keys(localStorage).filter(k=>k.startsWith('ct_')).sort().reverse()}
+function fmt(n){return Math.round(n).toLocaleString('vi-VN')}
+
+function nowTime(){
+  const d=new Date();
+  return d.getHours().toString().padStart(2,'0')+':'+d.getMinutes().toString().padStart(2,'0');
+}
+
+// date
+const wd=['Chủ nhật','Thứ hai','Thứ ba','Thứ tư','Thứ năm','Thứ sáu','Thứ bảy'];
+const d=new Date();
+document.getElementById('nav-date').textContent=wd[d.getDay()]+', '+d.getDate()+'/'+(d.getMonth()+1)+'/'+d.getFullYear();
+
+function selType(t){
+  curType=t;
+  document.getElementById('type-food').className='type-btn'+(t==='food'?' selected':'');
+  document.getElementById('type-ex').className='type-btn'+(t==='exercise'?' selected':'');
+  document.getElementById('name-label').textContent=t==='food'?'Tên món ăn':'Tên hoạt động';
+  document.getElementById('inp-name').placeholder=t==='food'?'Ví dụ: Cơm gà, Phở bò...':'Ví dụ: Đi bộ 45 phút...';
+}
+
+function openSheet(){
+  document.getElementById('overlay').classList.add('show');
+  document.getElementById('sheet').classList.add('show');
+  setTimeout(()=>document.getElementById('inp-name').focus(),300);
+}
+function closeSheet(){
+  document.getElementById('overlay').classList.remove('show');
+  document.getElementById('sheet').classList.remove('show');
+  document.getElementById('inp-name').value='';
+  document.getElementById('inp-cal').value='';
+}
+
+function saveItem(){
+  const name=document.getElementById('inp-name').value.trim();
+  const cal=parseInt(document.getElementById('inp-cal').value)||0;
+  if(!name){alert('Vui lòng nhập tên');return}
+  if(cal<=0){alert('Vui lòng nhập số calo');return}
+  const logs=getLogs();
+  logs.push({id:Date.now(),name,cal,type:curType,time:nowTime()});
+  saveLogs(logs);
+  closeSheet();
+  render();
+}
+
+function delItem(id){
+  if(!confirm('Xóa mục này?'))return;
+  const logs=getLogs().filter(l=>l.id!==id);
+  saveLogs(logs);render();
+}
+
+function resetDay(){
+  if(!confirm('Xóa toàn bộ ghi chép hôm nay?'))return;
+  saveLogs([]);render();
+}
+
+function switchTab(tab,btn){
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('tab-today').style.display=tab==='today'?'block':'none';
+  document.getElementById('tab-history').style.display=tab==='history'?'block':'none';
+  if(tab==='history')renderHistory();
+}
+
+function render(){
+  const logs=getLogs();
+  const eaten=logs.filter(l=>l.type==='food').reduce((a,l)=>a+l.cal,0);
+  const burned=logs.filter(l=>l.type==='exercise').reduce((a,l)=>a+l.cal,0);
+  const net=GOAL-eaten+burned;
+  const pct=Math.min(100,Math.round(eaten/GOAL*100));
+  const meals=logs.filter(l=>l.type==='food').length;
+  const exs=logs.filter(l=>l.type==='exercise').length;
+
+  document.getElementById('sum-net').innerHTML=fmt(Math.max(0,net))+' <small>kcal</small>';
+  document.getElementById('sum-eaten').innerHTML=fmt(eaten)+' <small>kcal</small>';
+  document.getElementById('sum-burned').innerHTML=fmt(burned)+' <small>kcal</small>';
+  document.getElementById('sum-meals').textContent=meals+' bữa';
+  document.getElementById('sum-ex').textContent=exs+' hoạt động';
+  document.getElementById('sum-pct').textContent=pct+'%';
+  document.getElementById('prog-main').style.width=pct+'%';
+
+  const badge=document.getElementById('status-badge');
+  if(eaten>GOAL+200){badge.textContent='Vượt mức';badge.className='badge badge-over'}
+  else if(eaten>GOAL){badge.textContent='Đạt giới hạn';badge.className='badge badge-warn'}
+  else if(net<300){badge.textContent='Sắp đủ';badge.className='badge badge-warn'}
+  else{badge.textContent='Đang tốt';badge.className='badge badge-ok'}
+
+  const gP=Math.round(eaten*0.30/4),gC=Math.round(eaten*0.43/4),gF=Math.round(eaten*0.27/9);
+  document.getElementById('mac-p').textContent=gP+'g';
+  document.getElementById('mac-c').textContent=gC+'g';
+  document.getElementById('mac-f').textContent=gF+'g';
+  document.getElementById('bar-p').style.width=Math.min(100,Math.round(gP/P_TARGET*100))+'%';
+  document.getElementById('bar-c').style.width=Math.min(100,Math.round(gC/C_TARGET*100))+'%';
+  document.getElementById('bar-f').style.width=Math.min(100,Math.round(gF/F_TARGET*100))+'%';
+
+  const list=document.getElementById('log-list');
+  const em=document.getElementById('empty-msg');
+  list.querySelectorAll('.log-item').forEach(i=>i.remove());
+  em.style.display=logs.length?'none':'block';
+  [...logs].reverse().forEach(l=>{
+    const div=document.createElement('div');
+    div.className='log-item';
+    div.innerHTML=`
+      <div class="log-icon ${l.type==='food'?'log-icon-food':'log-icon-ex'}">${l.type==='food'?'🍽️':'🏃'}</div>
+      <div class="log-info">
+        <div class="log-name">${l.name}</div>
+        <div class="log-time">${l.time||''}</div>
+      </div>
+      <div class="log-cal ${l.type==='exercise'?'neg':''}">${l.type==='exercise'?'-':''}${fmt(l.cal)}</div>
+      <button class="btn-del" onclick="delItem(${l.id})">×</button>`;
+    list.appendChild(div);
+  });
+}
+
+function renderHistory(){
+  const keys=getAllKeys();
+  const el=document.getElementById('history-list');
+  if(keys.length===0){el.innerHTML='<div class="empty"><div class="empty-icon">📅</div>Chưa có lịch sử</div>';return}
+  const vn=['CN','T2','T3','T4','T5','T6','T7'];
+  el.innerHTML=keys.map(k=>{
+    const logs=JSON.parse(localStorage.getItem(k)||'[]');
+    const eaten=logs.filter(l=>l.type==='food').reduce((a,l)=>a+l.cal,0);
+    const burned=logs.filter(l=>l.type==='exercise').reduce((a,l)=>a+l.cal,0);
+    const dateStr=k.replace('ct_','');
+    const d=new Date(dateStr);
+    const label=vn[d.getDay()]+' '+d.getDate()+'/'+(d.getMonth()+1);
+    const net=GOAL-eaten+burned;
+    const ok=eaten<=GOAL+200;
+    return `<div class="history-item">
+      <div class="history-date">${label}</div>
+      <div class="history-row"><span>Đã nạp</span><span>${fmt(eaten)} kcal</span></div>
+      <div class="history-row"><span>Đã đốt</span><span>${fmt(burned)} kcal</span></div>
+      <div class="history-row" style="margin-top:4px;color:${ok?'var(--green-text)':'var(--red-text)'}"><span>Kết quả</span><span>${ok?'✓ Trong mục tiêu':'✗ Vượt mức'}</span></div>
+    </div>`;
+  }).join('');
+}
+
+render();
+
+// enter key
+document.getElementById('inp-cal').addEventListener('keydown',e=>{if(e.key==='Enter')saveItem()});
+</script>
+</body>
+</html>

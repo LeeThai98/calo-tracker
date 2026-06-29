@@ -529,6 +529,21 @@ body{display:flex;flex-direction:column}
       Tải dữ liệu về (.csv)
     </button>
   </div>
+
+  <div class="card" style="margin-top:0">
+    <div class="card-title">⚙️ Backup & Restore cài đặt</div>
+    <p style="font-size:12px;color:var(--text3);margin-bottom:11px;line-height:1.6">Lưu API key & Google ID ra file để không phải nhập lại khi đổi máy hoặc cài lại app.</p>
+    <button class="export-btn" onclick="backupSettings()" style="margin-bottom:8px">
+      <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+      Xuất file cài đặt (.json)
+    </button>
+    <label class="export-btn" style="cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px">
+      <svg viewBox="0 0 24 24" style="width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+      Nhập file cài đặt
+      <input type="file" accept=".json" onchange="restoreSettings(event)" style="display:none"/>
+    </label>
+    <div id="restore-msg" style="display:none;margin-top:9px;padding:9px 12px;background:var(--green-dim);border-radius:9px;font-size:13px;color:var(--green);font-weight:600"></div>
+  </div>
 </div>
 
 <!-- BOTTOM NAV -->
@@ -634,33 +649,51 @@ function refreshGreeting(){
   document.getElementById('greeting-text').textContent=greet+(name?' · '+name.split(' ').pop():'');
 }
 
-// Google Sign-In
-// saveGClient now defined above
-function loadGoogleScript(clientId){
-  if(document.getElementById('gsi-script')) return;
-  const s=document.createElement('script');
-  s.id='gsi-script';s.src='https://accounts.google.com/gsi/client';s.async=true;
-  s.onload=()=>{
-    window.google.accounts.id.initialize({client_id:clientId,callback:handleCredentialResponse,auto_select:false});
-  };
-  document.head.appendChild(s);
-}
+// Google Sign-In — redirect/implicit flow (Safari compatible)
+function loadGoogleScript(clientId){ /* not used in redirect flow */ }
+
 function handleGoogleLogin(){
   const clientId=localStorage.getItem('yl_gclient');
-  if(!clientId){alert('Chưa có Client ID. Nhập ở ô trên trước nhé!');return}
-  if(!window.google){loadGoogleScript(clientId);setTimeout(handleGoogleLogin,1500);return}
+  if(!clientId){alert('Chưa có Client ID!');return}
   if(gUser){
-    if(confirm('Đăng xuất?')){gUser=null;updateUserUI(null);}
+    if(confirm('Đăng xuất khỏi '+gUser.name+'?')){
+      gUser=null;localStorage.removeItem('yl_guser');updateUserUI(null);
+    }
     return;
   }
-  window.google.accounts.id.prompt();
+  const redirectUri=location.origin+location.pathname.replace(/\/$/,'')+'/';
+  const state=Math.random().toString(36).slice(2);
+  localStorage.setItem('yl_oauth_state',state);
+  const url='https://accounts.google.com/o/oauth2/v2/auth'
+    +'?client_id='+encodeURIComponent(clientId)
+    +'&redirect_uri='+encodeURIComponent(redirectUri)
+    +'&response_type=token'
+    +'&scope='+encodeURIComponent('openid email profile')
+    +'&state='+state;
+  location.href=url;
 }
-function handleCredentialResponse(response){
-  const payload=JSON.parse(atob(response.credential.split('.')[1]));
-  gUser={name:payload.name,email:payload.email,picture:payload.picture};
-  updateUserUI(gUser);
-  refreshGreeting();
+
+function handleOAuthCallback(){
+  const hash=location.hash.substring(1);
+  if(!hash||!hash.includes('access_token')) return;
+  const params={};hash.split('&').forEach(p=>{const[k,v]=p.split('=');params[k]=decodeURIComponent(v)});
+  history.replaceState(null,'',location.pathname);
+  fetch('https://www.googleapis.com/oauth2/v3/userinfo',{
+    headers:{Authorization:'Bearer '+params.access_token}
+  }).then(r=>r.json()).then(info=>{
+    gUser={name:info.name,email:info.email,picture:info.picture};
+    localStorage.setItem('yl_guser',JSON.stringify(gUser));
+    updateUserUI(gUser);refreshGreeting();
+    switchTab('today',document.getElementById('nav-today'));
+  }).catch(e=>console.log('userinfo error',e));
 }
+
+function handleCredentialResponse(r){
+  const p=JSON.parse(atob(r.credential.split('.')[1]));
+  gUser={name:p.name,email:p.email,picture:p.picture};
+  updateUserUI(gUser);refreshGreeting();
+}
+
 function updateUserUI(u){
   const ava=document.getElementById('user-avatar');
   const profAva=document.getElementById('prof-ava');
@@ -668,11 +701,11 @@ function updateUserUI(u){
   const btnTxt=document.getElementById('google-btn-text');
   if(u){
     if(u.picture){
-      ava.innerHTML=`<img src="${u.picture}" alt="${u.name}"/>`;
-      profAva.innerHTML=`<img src="${u.picture}" alt="${u.name}"/>`;
+      ava.innerHTML=`<img src="${u.picture}" alt="${u.name}" style="width:100%;height:100%;object-fit:cover;border-radius:50%"/>`;
+      profAva.innerHTML=`<img src="${u.picture}" alt="${u.name}" style="width:100%;height:100%;object-fit:cover;border-radius:50%"/>`;
     } else {
       const init=u.name.split(' ').map(w=>w[0]).join('').slice(0,2).toUpperCase();
-      ava.textContent=init; profAva.textContent=init;
+      ava.textContent=init;profAva.textContent=init;
     }
     document.getElementById('prof-name-text').textContent=u.name;
     document.getElementById('prof-sub-text').textContent=u.email;
@@ -680,7 +713,7 @@ function updateUserUI(u){
     btnTxt.textContent='Đăng xuất ('+u.name.split(' ').pop()+')';
     if(!document.getElementById('p-name').value) document.getElementById('p-name').value=u.name;
   } else {
-    ava.textContent='CT'; profAva.textContent='CT';
+    ava.textContent='CT';profAva.textContent='CT';
     document.getElementById('prof-name-text').textContent='Hồ sơ của bạn';
     document.getElementById('prof-sub-text').textContent='Điền thông số để tính TDEE';
     btn.classList.remove('signed-in');
@@ -977,6 +1010,45 @@ function resetGClient(){
   document.getElementById('gclient-form').style.display='block';
   document.getElementById('gclient-inp').value='';
 }
+function backupSettings(){
+  const settings={
+    yl_apikey: localStorage.getItem('yl_apikey')||'',
+    yl_gclient: localStorage.getItem('yl_gclient')||'',
+    yl_goal: localStorage.getItem('yl_goal')||'',
+    yl_profile: localStorage.getItem('yl_profile')||'',
+    yl_p_target: localStorage.getItem('yl_p_target')||'',
+    yl_c_target: localStorage.getItem('yl_c_target')||'',
+    yl_f_target: localStorage.getItem('yl_f_target')||'',
+    exported_at: new Date().toISOString()
+  };
+  const blob=new Blob([JSON.stringify(settings,null,2)],{type:'application/json'});
+  const a=document.createElement('a');
+  a.href=URL.createObjectURL(blob);
+  a.download='yumlog-settings-'+new Date().toISOString().slice(0,10)+'.json';
+  a.click();
+}
+
+function restoreSettings(e){
+  const file=e.target.files[0];if(!file)return;
+  const reader=new FileReader();
+  reader.onload=ev=>{
+    try{
+      const s=JSON.parse(ev.target.result);
+      const keys=['yl_apikey','yl_gclient','yl_goal','yl_profile','yl_p_target','yl_c_target','yl_f_target'];
+      let restored=0;
+      keys.forEach(k=>{if(s[k]){localStorage.setItem(k,s[k]);restored++;}});
+      const msg=document.getElementById('restore-msg');
+      msg.style.display='block';
+      msg.textContent='✓ Đã khôi phục '+restored+' cài đặt! Vui lòng tải lại trang.';
+      setTimeout(()=>location.reload(),1500);
+    }catch(err){
+      alert('File không hợp lệ!');
+    }
+  };
+  reader.readAsText(file);
+  e.target.value='';
+}
+
 function exportJSON(){
   const keys=Object.keys(localStorage).filter(k=>k.startsWith('yl_'));const data={};keys.forEach(k=>data[k]=localStorage.getItem(k));const blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='yumlog-data-'+new Date().toISOString().slice(0,10)+'.json';a.click();
 }
@@ -989,6 +1061,10 @@ document.getElementById('inp-cal').addEventListener('keydown',e=>{if(e.key==='En
 document.getElementById('ai-question').addEventListener('keydown',e=>{if(e.key==='Enter')sendAnalysis()});
 buildQuick('food');
 renderToday();
+// Check for Google OAuth callback
+handleOAuthCallback();
+// Restore saved Google session
+try{const saved=localStorage.getItem('yl_guser');if(saved){gUser=JSON.parse(saved);updateUserUI(gUser);refreshGreeting();}}catch(e){}
 const _p=getProfile();if(_p.tdee)showTDEE(_p.tdee,_p.weight,_p.height,_p.goalDelta||-500);
 </script>
 </body>

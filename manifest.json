@@ -1,0 +1,18 @@
+{
+  "name": "YumLog",
+  "short_name": "YumLog",
+  "description": "Theo dõi calo thông minh",
+  "start_url": "/calo-tracker/",
+  "display": "standalone",
+  "background_color": "#faf8f2",
+  "theme_color": "#c9a84c",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

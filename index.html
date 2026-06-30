@@ -566,7 +566,7 @@ body{display:flex;flex-direction:column}
     <div class="goal-opts" id="goal-opts"></div>
   </div>
 
-  <div class="api-box">
+  <div class="api-box" id="api-box-section">
     <div class="card-title" style="margin-bottom:8px" data-i18n="gemini_aikey">🤖 Gemini AI (miễn phí)</div>
     <div class="api-status" id="api-key-status">
       <span id="api-key-status-text" data-i18n="daketnoi_gemini">✓ Đã kết nối Gemini AI</span>
@@ -840,7 +840,10 @@ function saveLogs(l){localStorage.setItem(todayKey(),JSON.stringify(l))}
 function getGoal(){return parseInt(localStorage.getItem('yl_goal'))||DEFAULT_GOAL}
 function getProfile(){try{return JSON.parse(localStorage.getItem('yl_profile')||'{}')}catch{return{}}}
 function saveProfile(p){localStorage.setItem('yl_profile',JSON.stringify(p))}
-function getApiKey(){return localStorage.getItem('yl_apikey_gemini')||''}
+// ⚠️ Dán API key Gemini của bạn vào giữa hai dấu nháy đơn dưới đây.
+// Vì repo này là Public, key sẽ hiển thị công khai cho bất kỳ ai xem source trang web.
+const HARDCODED_GEMINI_KEY='AQ.Ab8RN6I0ejvES7bUSiTdYT5KRlQ7Bb43Ua-nX6TKRITsgQzDDw';
+function getApiKey(){return HARDCODED_GEMINI_KEY||localStorage.getItem('yl_apikey_gemini')||''}
 
 async function fetchGeminiWithRetry(body,key,onRetry){
   const url='https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key='+key;
@@ -1356,7 +1359,11 @@ function loadProfile(){
   if(p.weight)document.getElementById('p-weight').value=p.weight;
   if(p.activity)document.getElementById('p-activity').value=p.activity;
   if(p.sex){curSex=p.sex;setSex(p.sex)}
-  const k=getApiKey();if(k){showApiKeyConnected()}
+  if(HARDCODED_GEMINI_KEY){
+    document.getElementById('api-box-section').style.display='none';
+  }else{
+    const k=getApiKey();if(k){showApiKeyConnected()}
+  }
   if(p.tdee)showTDEE(p.tdee,p.weight,p.height,p.goalDelta||selectedGoal);
   if(p.name){
     document.getElementById('prof-name-text').textContent=p.name;

@@ -27,39 +27,34 @@ html,body{height:100%;background:var(--bg);color:var(--text);font-family:-apple-
 body{display:flex;flex-direction:column}
 .statusbar{height:var(--safe-top);background:var(--bg);flex-shrink:0}
 
-/* HEADER */
 .header{padding:10px 18px 8px;flex-shrink:0;display:flex;justify-content:space-between;align-items:center;background:var(--bg)}
 .header-brand{display:flex;align-items:center;gap:9px}
 .brand-icon{width:34px;height:34px;flex-shrink:0}
-.brand-text{}
 .brand-name{font-size:19px;font-weight:800;letter-spacing:-.5px;color:var(--text);line-height:1}
 .brand-name span{color:var(--gold)}
 .brand-greeting{font-size:11px;color:var(--text3);margin-top:1px}
+.user-avatar{width:34px;height:34px;border-radius:17px;background:linear-gradient(135deg,#c9a84c,#8b6a2e);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:#fff;border:1.5px solid var(--gold);flex-shrink:0;overflow:hidden;cursor:pointer}
 .header-right{display:flex;align-items:center;gap:8px}
-.user-avatar{width:34px;height:34px;border-radius:17px;background:linear-gradient(135deg,#c9a84c,#8b6a2e);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:#fff;border:1.5px solid var(--gold);flex-shrink:0;overflow:hidden}
-.user-avatar img{width:100%;height:100%;object-fit:cover}
+.lang-toggle{display:flex;align-items:center;gap:4px;height:30px;padding:0 9px;border-radius:15px;background:var(--surface2);border:1px solid var(--border2);cursor:pointer;font-size:12px;font-weight:700;color:var(--text2)}
+.lang-toggle:active{background:var(--gold-dim)}
+.lang-flag{font-size:14px}
 
-/* SCROLL */
-.scroll{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;padding:6px 15px calc(20px);display:none}
+.scroll{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;padding:6px 15px 70px;display:none}
 .scroll.active{display:block}
 
-/* BOTTOM NAV */
 .bottom-nav{flex-shrink:0;background:var(--surface);border-top:0.5px solid var(--border);padding-bottom:var(--safe-bottom);position:relative}
 .nav-inner{display:flex;align-items:center;height:56px}
-.nav-btn{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;border:none;background:none;cursor:pointer;padding:6px 0;color:var(--text3);font-size:9.5px;font-weight:500;transition:color .2s;height:56px}
+.nav-btn{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;border:none;background:none;cursor:pointer;padding:6px 1px;color:var(--text3);font-size:8.3px;font-weight:500;transition:color .2s;height:56px}
 .nav-btn.active{color:var(--gold)}
-.nav-btn svg{width:22px;height:22px;stroke:currentColor;fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;transition:stroke .2s}
+.nav-btn svg{width:19px;height:19px;stroke:currentColor;fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;transition:stroke .2s}
 .nav-btn.active svg{stroke:var(--gold)}
-.nav-center{flex:1;display:flex;justify-content:center;align-items:center;height:56px}
-.nav-fab{width:50px;height:50px;border-radius:25px;background:var(--gold);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 16px rgba(201,168,76,0.4);transform:translateY(-10px);transition:transform .15s}
-.nav-fab:active{transform:translateY(-10px) scale(.92)}
-.nav-fab svg{width:22px;height:22px;stroke:#fff;fill:none;stroke-width:2.2;stroke-linecap:round}
+.fab-floating{position:fixed;right:18px;bottom:calc(var(--safe-bottom) + 64px);width:54px;height:54px;border-radius:27px;background:var(--gold);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 20px rgba(201,168,76,0.45);transition:transform .15s;z-index:90}
+.fab-floating:active{transform:scale(.92)}
+.fab-floating svg{width:24px;height:24px;stroke:#fff;fill:none;stroke-width:2.2;stroke-linecap:round}
 
-/* CARDS */
 .card{background:var(--surface);border-radius:var(--r);border:0.5px solid var(--border);box-shadow:var(--shadow);margin-bottom:11px;padding:15px}
 .card-title{font-size:10.5px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:.6px;margin-bottom:13px}
 
-/* RING CARD */
 .ring-card{background:linear-gradient(135deg,#fffbf0,#fff);border-radius:20px;border:0.5px solid rgba(201,168,76,0.25);box-shadow:var(--shadow2);margin-bottom:11px;padding:16px 18px}
 .ring-row{display:flex;align-items:center;gap:16px}
 .ring-wrap{flex-shrink:0;position:relative;width:100px;height:100px}
@@ -78,7 +73,6 @@ body{display:flex;flex-direction:column}
 .sp-over{background:var(--red-dim);color:var(--red)}
 .sdot{width:5px;height:5px;border-radius:3px;flex-shrink:0}
 
-/* STAT GRID */
 .stat-grid{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-bottom:11px}
 .stat-card{background:var(--surface);border-radius:14px;border:0.5px solid var(--border);box-shadow:var(--shadow);padding:13px}
 .stat-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:9px}
@@ -89,7 +83,6 @@ body{display:flex;flex-direction:column}
 .stat-num{font-size:21px;font-weight:700;letter-spacing:-.5px;color:var(--text)}
 .stat-lbl{font-size:10.5px;color:var(--text3);margin-top:2px}
 
-/* MACRO */
 .macro-item{display:flex;align-items:center;gap:10px;margin-bottom:10px}
 .macro-item:last-child{margin-bottom:0}
 .macro-dot{width:7px;height:7px;border-radius:4px;flex-shrink:0}
@@ -98,7 +91,6 @@ body{display:flex;flex-direction:column}
 .macro-fill{height:100%;border-radius:3px;transition:width .5s ease}
 .macro-val{font-size:12px;font-weight:600;color:var(--text);min-width:56px;text-align:right;flex-shrink:0}
 
-/* LOG */
 .sec-lbl{font-size:10.5px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:.6px;margin-bottom:9px;margin-top:2px;display:flex;justify-content:space-between;align-items:center}
 .clr-btn{font-size:11px;color:var(--red);background:none;border:none;cursor:pointer;font-weight:600}
 .log-list{display:flex;flex-direction:column;gap:7px}
@@ -119,13 +111,11 @@ body{display:flex;flex-direction:column}
 .empty-icon{margin-bottom:10px}
 .empty-text{font-size:13.5px;color:var(--text3);line-height:1.6}
 
-/* AI BTNS */
 .ai-row{display:flex;gap:7px;margin-bottom:11px}
 .ai-btn{flex:1;height:42px;border-radius:11px;border:1.5px dashed var(--border2);background:var(--gold-dim);color:var(--gold);font-size:12.5px;font-weight:600;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px}
 .ai-btn:active{background:var(--surface3)}
 .ai-btn svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
 
-/* OVERLAY + SHEET */
 .overlay{position:fixed;inset:0;background:rgba(20,16,8,0.48);z-index:200;opacity:0;pointer-events:none;transition:opacity .3s;backdrop-filter:blur(4px)}
 .overlay.show{opacity:1;pointer-events:all}
 .sheet{position:fixed;bottom:0;left:0;right:0;background:var(--surface);border-radius:22px 22px 0 0;z-index:201;padding:0 17px calc(var(--safe-bottom)+16px);transform:translateY(100%);transition:transform .34s cubic-bezier(.4,0,.2,1);border-top:0.5px solid var(--border);max-height:92vh;overflow-y:auto}
@@ -150,7 +140,6 @@ body{display:flex;flex-direction:column}
 .save-btn{width:100%;height:49px;border-radius:13px;background:var(--gold);color:#fff;font-size:15.5px;font-weight:700;border:none;cursor:pointer;box-shadow:0 4px 14px rgba(201,168,76,0.28)}
 .save-btn:active{opacity:.86}
 
-/* CHART TAB */
 .period-row{display:flex;gap:6px;margin-bottom:11px}
 .period-btn{flex:1;height:31px;border-radius:9px;border:1px solid var(--border2);background:transparent;color:var(--text2);font-size:12px;font-weight:600;cursor:pointer;transition:all .2s}
 .period-btn.active{background:var(--gold-dim);color:var(--gold);border-color:var(--gold)}
@@ -160,10 +149,53 @@ body{display:flex;flex-direction:column}
 .legend-dot{width:8px;height:8px;border-radius:4px;flex-shrink:0}
 .sum-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:11px}
 .sum-card{background:var(--surface);border:0.5px solid var(--border);border-radius:12px;padding:11px;text-align:center;box-shadow:var(--shadow)}
+
+.trend-progress-wrap{padding:4px 0}
+.trend-progress-bg{height:10px;background:var(--surface2);border-radius:6px;overflow:hidden;margin-bottom:8px}
+.trend-progress-fill{height:100%;border-radius:6px;background:linear-gradient(90deg,var(--gold),var(--green));transition:width .6s ease}
+.trend-progress-label{font-size:13px;color:var(--text2);text-align:center;font-weight:600}
+.trend-weight-est{display:flex;align-items:center;gap:14px;padding:14px;background:var(--surface2);border-radius:14px;margin-bottom:10px}
+.trend-weight-icon{font-size:32px;flex-shrink:0}
+.trend-weight-val{font-size:22px;font-weight:700;color:var(--text);letter-spacing:-.3px}
+.trend-weight-sub{font-size:12px;color:var(--text3);margin-top:2px;line-height:1.5}
+.trend-note{font-size:11.5px;color:var(--text3);line-height:1.6;margin:0}
+.ai-diag-result{background:var(--surface2);border-radius:12px;padding:14px;font-size:13.5px;color:var(--text);line-height:1.7;white-space:pre-wrap}
+.diag-loading{text-align:center;padding:20px 0;color:var(--text3);font-size:13px}
+
+/* Balance box (metabolic forecast) */
+.balance-box{background:linear-gradient(135deg,var(--green-dim),var(--surface2));border-radius:16px;padding:18px;border:0.5px solid var(--border)}
+.balance-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
+.balance-label{font-size:13.5px;font-weight:600;color:var(--text)}
+.balance-badge{font-size:12px;font-weight:700;padding:5px 12px;border-radius:20px}
+.balance-badge.deficit{background:var(--blue-dim,rgba(79,142,247,0.15));color:#4f8ef7}
+.balance-badge.surplus{background:var(--amber-dim);color:var(--amber)}
+.balance-badge.balanced{background:var(--green-dim);color:var(--green)}
+.balance-num{font-size:38px;font-weight:800;letter-spacing:-1px;color:var(--text);margin-bottom:10px;display:flex;align-items:baseline;gap:4px}
+.balance-unit{font-size:14px;font-weight:500;color:var(--text3)}
+.balance-desc{font-size:13px;color:var(--text2);line-height:1.6;margin:0}
+.balance-desc b{color:var(--green)}
+
+/* Dark AI diagnosis card */
+.diag-card{background:var(--surface);border:0.5px solid var(--border);border-radius:20px;padding:20px;margin-bottom:14px;box-shadow:var(--shadow)}
+.diag-header{display:flex;align-items:center;gap:10px;margin-bottom:14px}
+.diag-sparkle{font-size:20px}
+.diag-title{font-size:16px;font-weight:700;color:var(--text);letter-spacing:-.2px}
+.diag-item{background:var(--surface2);border-radius:14px;padding:14px 16px;margin-bottom:10px}
+.diag-item:last-child{margin-bottom:0}
+.diag-item-head{display:flex;align-items:center;gap:8px;margin-bottom:8px}
+.diag-item-icon{font-size:16px}
+.diag-item-title{font-size:14px;font-weight:700}
+.diag-item.warning .diag-item-title{color:var(--amber)}
+.diag-item.success .diag-item-title{color:var(--green)}
+.diag-item.danger .diag-item-title{color:var(--red)}
+.diag-item.info .diag-item-title{color:var(--gold)}
+.diag-item-desc{font-size:13px;color:var(--text2);line-height:1.65}
+.diag-item-foods{color:var(--green);font-weight:600}
+.diag-cta-btn{margin-bottom:0}
+.diag-error{color:var(--red);font-size:13px;line-height:1.6}
 .sum-val{font-size:16px;font-weight:700;color:var(--text);letter-spacing:-.3px}
 .sum-lbl{font-size:10px;color:var(--text3);margin-top:2px}
 
-/* HISTORY */
 .hist-day{background:var(--surface);border:0.5px solid var(--border);border-radius:13px;padding:13px;margin-bottom:9px;box-shadow:var(--shadow)}
 .hist-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:9px}
 .hist-date{font-size:13.5px;font-weight:600;color:var(--text)}
@@ -175,7 +207,6 @@ body{display:flex;flex-direction:column}
 .hist-prog{height:4px;background:var(--surface3);border-radius:2px;overflow:hidden;margin-top:9px}
 .hist-prog-fill{height:100%;border-radius:2px;transition:width .4s}
 
-/* ANALYSIS TAB */
 .ai-chat{display:flex;flex-direction:column;gap:10px;margin-bottom:12px}
 .ai-msg{display:flex;gap:9px;align-items:flex-start}
 .ai-msg.user{flex-direction:row-reverse}
@@ -197,16 +228,10 @@ body{display:flex;flex-direction:column}
 .ai-dot:nth-child(3){animation-delay:.4s}
 @keyframes bounce{0%,60%,100%{transform:translateY(0)}30%{transform:translateY(-5px)}}
 
-/* PROFILE */
 .prof-hero{text-align:center;padding:14px 0 18px}
 .prof-ava{width:68px;height:68px;border-radius:34px;background:linear-gradient(135deg,#c9a84c,#8b6a2e);display:flex;align-items:center;justify-content:center;font-size:26px;font-weight:700;color:#fff;margin:0 auto 10px;box-shadow:var(--shadow2);overflow:hidden}
-.prof-ava img{width:100%;height:100%;object-fit:cover}
 .prof-name{font-size:17px;font-weight:700;color:var(--text)}
 .prof-sub{font-size:12px;color:var(--text3);margin-top:3px}
-.google-btn{width:100%;height:46px;border-radius:12px;background:var(--surface);border:1.5px solid var(--border2);color:var(--text);font-size:14px;font-weight:600;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:9px;margin-bottom:12px;box-shadow:var(--shadow)}
-.google-btn:active{background:var(--surface2)}
-.google-btn svg{width:18px;height:18px;flex-shrink:0}
-.google-btn.signed-in{border-color:var(--red);color:var(--red)}
 .form-row{display:grid;grid-template-columns:1fr 1fr;gap:9px}
 .form-group{margin-bottom:12px}
 .form-lbl{font-size:10.5px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px}
@@ -244,13 +269,13 @@ body{display:flex;flex-direction:column}
 .api-inp:focus{border-color:var(--gold)}
 .api-save-btn{width:100%;height:39px;border-radius:10px;background:var(--surface3);color:var(--text2);font-size:13px;font-weight:600;border:none;cursor:pointer;margin-top:7px}
 .api-save-btn:active{background:var(--gold-dim);color:var(--gold)}
+.api-status{display:none;align-items:center;gap:8px;margin-bottom:10px;padding:8px 11px;background:var(--green-dim);border-radius:9px}
+.api-status span{font-size:13px;color:var(--green);font-weight:600}
+.api-status button{margin-left:auto;background:none;border:none;font-size:11px;color:var(--text3);cursor:pointer}
 .export-btn{width:100%;height:44px;border-radius:11px;border:1.5px solid var(--border2);background:var(--surface);color:var(--text2);font-size:13.5px;font-weight:600;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;box-shadow:var(--shadow)}
 .export-btn:active{background:var(--surface2)}
 .export-btn svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
-.gclient-note{font-size:11.5px;color:var(--text3);background:var(--surface2);padding:10px 12px;border-radius:10px;margin-bottom:10px;border:0.5px solid var(--border);line-height:1.6}
-.gclient-note a{color:var(--gold)}
 
-/* AI SCAN SHEET */
 .ai-preview{width:100%;max-height:170px;object-fit:cover;border-radius:11px;margin-bottom:11px;border:0.5px solid var(--border)}
 .ai-result{background:var(--surface2);border-radius:11px;padding:12px;margin-bottom:11px;font-size:13.5px;color:var(--text);line-height:1.6;white-space:pre-wrap}
 .spinner{display:inline-block;width:22px;height:22px;border:2.5px solid var(--border2);border-top-color:var(--gold);border-radius:50%;animation:spin .8s linear infinite;margin-bottom:6px}
@@ -260,7 +285,6 @@ body{display:flex;flex-direction:column}
 <body>
 <div class="statusbar"></div>
 
-<!-- HEADER -->
 <div class="header">
   <div class="header-brand">
     <svg class="brand-icon" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -274,17 +298,20 @@ body{display:flex;flex-direction:column}
       <circle cx="17" cy="15" r="2.5" fill="#c9a84c"/>
       <line x1="8" y1="27" x2="26" y2="27" stroke="#c9a84c" stroke-width="2" stroke-linecap="round"/>
     </svg>
-    <div class="brand-text">
+    <div>
       <div class="brand-name">Yum<span>Log</span></div>
       <div class="brand-greeting" id="greeting-text">Xin chào buổi sáng ☀️</div>
     </div>
   </div>
   <div class="header-right">
+    <button class="lang-toggle" id="lang-toggle" onclick="toggleLang()">
+      <span class="lang-flag" id="lang-flag">🇻🇳</span><span id="lang-code">VN</span>
+    </button>
     <div class="user-avatar" id="user-avatar" onclick="switchToProfile()">CT</div>
   </div>
 </div>
 
-<!-- SCROLLABLE TABS -->
+<!-- TODAY -->
 <div class="scroll active" id="tab-today">
   <div class="ring-card">
     <div class="ring-row">
@@ -297,12 +324,12 @@ body{display:flex;flex-direction:column}
         </svg>
         <div class="ring-center">
           <div class="ring-pct" id="ring-pct">0%</div>
-          <div class="ring-sub">đã nạp</div>
+          <div class="ring-sub" data-i18n="da_nap">đã nạp</div>
         </div>
       </div>
       <div class="ring-meta">
-        <div class="rm-lbl">Còn lại hôm nay</div>
-        <div class="rm-val"><span id="net-val">–</span> <span class="rm-unit">kcal</span></div>
+        <div class="rm-lbl" data-i18n="con_lai">Còn lại hôm nay</div>
+        <div class="rm-val"><span id="net-val">–</span> <span class="rm-unit" data-i18n="kcal">kcal</span></div>
         <div class="rm-goal" id="goal-lbl">Mục tiêu: – kcal</div>
         <div class="status-pill sp-ok" id="status-pill">
           <div class="sdot" id="sdot" style="background:var(--green)"></div>
@@ -311,58 +338,62 @@ body{display:flex;flex-direction:column}
       </div>
     </div>
   </div>
+
   <div class="stat-grid">
     <div class="stat-card">
       <div class="stat-top">
         <div class="stat-icon-wrap" style="background:var(--green-dim)">
-          <svg style="width:16px;height:16px;stroke:var(--green);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round"><path d="M3 11l2-2 4 4 6-6 2 2"/></svg>
+          <svg style="width:16px;height:16px;stroke:var(--green);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round" viewBox="0 0 24 24"><path d="M3 11l2-2 4 4 6-6 2 2"/></svg>
         </div>
-        <div class="stat-badge badge-eat">Nạp vào</div>
+        <div class="stat-badge badge-eat" data-i18n="nap_vao">Nạp vào</div>
       </div>
       <div class="stat-num" id="s-eaten">0</div>
-      <div class="stat-lbl">kcal hôm nay</div>
+      <div class="stat-lbl" data-i18n="kcal_homnay">kcal hôm nay</div>
     </div>
     <div class="stat-card">
       <div class="stat-top">
         <div class="stat-icon-wrap" style="background:var(--gold-dim)">
-          <svg style="width:16px;height:16px;stroke:var(--gold);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round"><path d="M12 2C6 2 3 8 5 14s7 8 7 8 5-2 7-8-2-12-7-12z"/></svg>
+          <svg style="width:16px;height:16px;stroke:var(--gold);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round" viewBox="0 0 24 24"><path d="M12 2C6 2 3 8 5 14s7 8 7 8 5-2 7-8-2-12-7-12z"/></svg>
         </div>
-        <div class="stat-badge badge-burn">Đốt cháy</div>
+        <div class="stat-badge badge-burn" data-i18n="dot_chay">Đốt cháy</div>
       </div>
       <div class="stat-num" id="s-burned">0</div>
-      <div class="stat-lbl">kcal vận động</div>
+      <div class="stat-lbl" data-i18n="kcal_vandong">kcal vận động</div>
     </div>
   </div>
+
   <div class="card">
-    <div class="card-title">Dinh dưỡng hôm nay</div>
+    <div class="card-title" data-i18n="dinhduong_homnay">Dinh dưỡng hôm nay</div>
     <div class="macro-item">
       <div class="macro-dot" style="background:var(--green)"></div>
-      <div class="macro-name" style="color:var(--green)">Protein</div>
+      <div class="macro-name" style="color:var(--green)" data-i18n="protein">Protein</div>
       <div class="macro-bg"><div class="macro-fill" id="bar-p" style="width:0%;background:var(--green)"></div></div>
       <div class="macro-val" id="mac-p">0 / –g</div>
     </div>
     <div class="macro-item">
       <div class="macro-dot" style="background:var(--gold)"></div>
-      <div class="macro-name" style="color:var(--gold)">Carb</div>
+      <div class="macro-name" style="color:var(--gold)" data-i18n="carb">Carb</div>
       <div class="macro-bg"><div class="macro-fill" id="bar-c" style="width:0%;background:var(--gold)"></div></div>
       <div class="macro-val" id="mac-c">0 / –g</div>
     </div>
     <div class="macro-item">
       <div class="macro-dot" style="background:var(--amber)"></div>
-      <div class="macro-name" style="color:var(--amber)">Chất béo</div>
+      <div class="macro-name" style="color:var(--amber)" data-i18n="chatbeo">Chất béo</div>
       <div class="macro-bg"><div class="macro-fill" id="bar-f" style="width:0%;background:var(--amber)"></div></div>
       <div class="macro-val" id="mac-f">0 / –g</div>
     </div>
   </div>
+
   <div class="ai-row">
     <button class="ai-btn" onclick="openAIScan('camera')">
-      <svg viewBox="0 0 24 24"><path d="M23 19a2 2 0 01-2 2H3a2 2 0 01-2-2V8a2 2 0 012-2h4l2-3h6l2 3h4a2 2 0 012 2z"/><circle cx="12" cy="13" r="4"/></svg>Chụp ảnh
+      <svg viewBox="0 0 24 24"><path d="M23 19a2 2 0 01-2 2H3a2 2 0 01-2-2V8a2 2 0 012-2h4l2-3h6l2 3h4a2 2 0 012 2z"/><circle cx="12" cy="13" r="4"/></svg><span data-i18n="chup_anh">Chụp ảnh</span>
     </button>
     <button class="ai-btn" onclick="openAIScan('upload')">
-      <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>Tải ảnh
+      <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg><span data-i18n="tai_anh">Tải ảnh</span>
     </button>
   </div>
-  <div class="sec-lbl">Nhật ký hôm nay <button class="clr-btn" onclick="clearToday()">Xóa tất cả</button></div>
+
+  <div class="sec-lbl"><span data-i18n="nhatky_homnay">Nhật ký hôm nay</span> <button class="clr-btn" onclick="clearToday()" data-i18n="xoa_tatca">Xóa tất cả</button></div>
   <div class="log-list" id="log-list">
     <div class="empty-state" id="empty-msg">
       <div class="empty-icon">
@@ -372,56 +403,104 @@ body{display:flex;flex-direction:column}
           <circle cx="18" cy="30" r="3" fill="#e8d49a"/>
           <circle cx="26" cy="24" r="3" fill="#d4b978"/>
           <circle cx="34" cy="20" r="3" fill="#e8d49a"/>
-          <path d="M22 36 Q26 30 30 36" stroke="#c9a84c" stroke-width="1.5" stroke-linecap="round" fill="none"/>
         </svg>
       </div>
-      <div class="empty-text">Chưa có ghi chép nào<br>Bấm ＋ hoặc chụp ảnh để bắt đầu</div>
+      <div class="empty-text" data-i18n="bam_de_batdau_full"></div>
     </div>
   </div>
 </div>
 
+<!-- CHART -->
 <div class="scroll" id="tab-chart">
   <div class="period-row">
-    <button class="period-btn active" onclick="setPeriod('week',this)">7 ngày</button>
-    <button class="period-btn" onclick="setPeriod('month',this)">30 ngày</button>
+    <button class="period-btn active" onclick="setPeriod('week',this)" data-i18n="p7">7 ngày</button>
+    <button class="period-btn" onclick="setPeriod('month',this)" data-i18n="p30">30 ngày</button>
   </div>
   <div class="sum-grid" id="chart-sum"></div>
   <div class="card">
-    <div class="card-title">Calo nạp vào vs. Đốt cháy</div>
+    <div class="card-title" data-i18n="calo_vs">Calo nạp vào vs. Đốt cháy</div>
     <div class="chart-wrap"><canvas id="barChart" role="img" aria-label="Biểu đồ calo"></canvas></div>
     <div class="legend-row">
-      <div class="legend-item"><div class="legend-dot" style="background:#c9a84c"></div>Nạp vào</div>
-      <div class="legend-item"><div class="legend-dot" style="background:#3a9e6a"></div>Đốt cháy</div>
+      <div class="legend-item"><div class="legend-dot" style="background:#c9a84c"></div><span data-i18n="nap_vao">Nạp vào</span></div>
+      <div class="legend-item"><div class="legend-dot" style="background:#3a9e6a"></div><span data-i18n="dot_chay">Đốt cháy</span></div>
     </div>
   </div>
   <div class="card">
-    <div class="card-title">Phân bổ macro (trung bình)</div>
+    <div class="card-title" data-i18n="phanbo_macro">Phân bổ macro (trung bình)</div>
     <div class="chart-wrap"><canvas id="donutChart" role="img" aria-label="Macro chart"></canvas></div>
     <div class="legend-row" style="justify-content:center">
-      <div class="legend-item"><div class="legend-dot" style="background:#3a9e6a"></div>Protein</div>
-      <div class="legend-item"><div class="legend-dot" style="background:#c9a84c"></div>Carb</div>
-      <div class="legend-item"><div class="legend-dot" style="background:#c07840"></div>Chất béo</div>
+      <div class="legend-item"><div class="legend-dot" style="background:#3a9e6a"></div><span data-i18n="protein">Protein</span></div>
+      <div class="legend-item"><div class="legend-dot" style="background:#c9a84c"></div><span data-i18n="carb">Carb</span></div>
+      <div class="legend-item"><div class="legend-dot" style="background:#c07840"></div><span data-i18n="chatbeo">Chất béo</span></div>
     </div>
   </div>
 </div>
 
+<!-- HISTORY -->
 <div class="scroll" id="tab-history">
-  <div class="sec-lbl" style="margin-bottom:11px">30 ngày gần nhất</div>
+  <div class="sec-lbl" style="margin-bottom:11px" data-i18n="h30days">30 ngày gần nhất</div>
   <div id="history-list"></div>
 </div>
 
-<div class="scroll" id="tab-analysis">
+<!-- TRENDS -->
+<div class="scroll" id="tab-trends">
   <div class="card">
-    <div class="card-title">Hỏi AI về dinh dưỡng</div>
+    <div class="card-title" style="font-size:13px;text-transform:none;letter-spacing:0;color:var(--text);font-weight:700;margin-bottom:6px" data-i18n="canbang_chuyenhoa">Cân bằng chuyển hóa dự báo</div>
+    <p style="font-size:12.5px;color:var(--text3);line-height:1.6;margin-bottom:14px" data-i18n="canbang_sub">Dựa trên TDEE và chỉ số nạp, chúng tôi tính toán biến đổi cơ thể sau 30 ngày tới.</p>
+
+    <div class="balance-box" id="balance-box">
+      <div class="balance-top">
+        <div class="balance-label" data-i18n="trangthai_calo">Trạng thái calo thực nạp</div>
+        <div class="balance-badge" id="balance-badge">–</div>
+      </div>
+      <div class="balance-num"><span id="balance-sign">–</span><span id="balance-val">0</span> <span class="balance-unit" data-i18n="kcal_ngay">kcal / ngày</span></div>
+      <p class="balance-desc"><span data-i18n="balance_desc_pre">Nếu tiếp tục duy trì mức dinh dưỡng này, cân nặng cơ thể ước tính sẽ thay đổi</span> <b id="balance-kg-text">–</b> <span data-i18n="balance_desc_post">sau 30 ngày.</span></p>
+    </div>
+  </div>
+
+  <div class="card" style="margin-top:0">
+    <div class="card-title" style="margin-bottom:10px" data-i18n="tyle_datmt">Tỷ lệ đạt mục tiêu (30 ngày)</div>
+    <div class="trend-progress-wrap">
+      <div class="trend-progress-bg"><div class="trend-progress-fill" id="trend-goal-bar" style="width:0%"></div></div>
+      <div class="trend-progress-label" id="trend-goal-label">0% số ngày trong mục tiêu</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title" data-i18n="doonđinh">Độ ổn định lượng calo nạp vào</div>
+    <div class="stat-grid" style="margin-bottom:0">
+      <div class="stat-card">
+        <div class="stat-num" id="trend-stability">–</div>
+        <div class="stat-lbl" data-i18n="dolechchuan">Độ lệch chuẩn (kcal)</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num" style="font-size:16px" id="trend-stability-label">–</div>
+        <div class="stat-lbl" data-i18n="danhgia">Đánh giá</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="diag-card">
+    <div class="diag-header">
+      <span class="diag-sparkle">✨</span>
+      <span class="diag-title" data-i18n="chuandoan_ai">Chẩn Đoán Từ Chuyên Gia Dinh Dưỡng AI</span>
+    </div>
+    <div id="trend-ai-box">
+      <button class="apply-btn diag-cta-btn" onclick="runNutritionDiagnosis()" data-i18n="phantich_dinhduong_btn">Phân tích dinh dưỡng bằng AI ✨</button>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title" data-i18n="hoi_ai_dinhduong">Hỏi AI về dinh dưỡng</div>
     <div class="ai-quick-btns" id="quick-ai-btns"></div>
     <div class="ai-chat" id="ai-chat">
       <div class="ai-msg">
         <div class="ai-avatar">🤖</div>
-        <div class="ai-bubble ai-bubble-bot">Xin chào! Tôi là trợ lý dinh dưỡng YumLog. Hỏi tôi về:<br>• Calo của món ăn bất kỳ<br>• Gợi ý bữa ăn lành mạnh<br>• Phân tích chế độ ăn của bạn<br>• Tư vấn vận động đốt calo</div>
+        <div class="ai-bubble ai-bubble-bot" data-i18n="chat_welcome">Xin chào! Tôi là trợ lý dinh dưỡng YumLog. Hỏi tôi về:<br>• Calo của món ăn bất kỳ<br>• Gợi ý bữa ăn lành mạnh<br>• Phân tích chế độ ăn của bạn<br>• Tư vấn vận động đốt calo</div>
       </div>
     </div>
     <div class="ai-input-row">
-      <input class="ai-inp" id="ai-question" type="text" placeholder="Hỏi về dinh dưỡng, calo, món ăn..."/>
+      <input class="ai-inp" id="ai-question" type="text" placeholder="Hỏi về dinh dưỡng, calo, món ăn..." data-i18n-ph="chat_placeholder"/>
       <button class="ai-send-btn" onclick="sendAnalysis()">
         <svg viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
       </button>
@@ -429,198 +508,331 @@ body{display:flex;flex-direction:column}
   </div>
 </div>
 
+<!-- PROFILE -->
 <div class="scroll" id="tab-profile">
   <div class="prof-hero">
     <div class="prof-ava" id="prof-ava">CT</div>
-    <div class="prof-name" id="prof-name-text">Hồ sơ của bạn</div>
-    <div class="prof-sub" id="prof-sub-text">Điền thông số để tính TDEE</div>
+    <div class="prof-name" id="prof-name-text" data-i18n="profile_default_name">Hồ sơ của bạn</div>
+    <div class="prof-sub" id="prof-sub-text" data-i18n="profile_default_sub">Điền thông số để tính TDEE</div>
   </div>
 
   <div class="card">
-    <div class="card-title">Đăng nhập Google</div>
-    <div id="gclient-status" style="display:none;align-items:center;gap:8px;margin-bottom:10px;padding:8px 11px;background:var(--green-dim);border-radius:9px">
-      <span style="font-size:13px;color:var(--green);font-weight:600">✓ Đã lưu Google Client ID</span>
-      <button onclick="resetGClient()" style="margin-left:auto;background:none;border:none;font-size:11px;color:var(--text3);cursor:pointer">Đổi</button>
-    </div>
-    <div id="gclient-form">
-      <div class="gclient-note">Tạo miễn phí tại <a href="https://console.cloud.google.com" target="_blank">console.cloud.google.com</a> → APIs & Services → Credentials → OAuth 2.0. Thêm URL GitHub Pages vào Authorized origins.</div>
-      <input class="api-inp" id="gclient-inp" type="text" placeholder="your-client-id.apps.googleusercontent.com" style="margin-bottom:7px" onblur="autoSaveGClient(this.value)"/>
-      <button class="api-save-btn" onclick="saveGClient()">Lưu Client ID</button>
-    </div>
-    <div style="margin-top:10px">
-      <button class="google-btn" id="google-btn" onclick="handleGoogleLogin()">
-        <svg viewBox="0 0 24 24"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
-        <span id="google-btn-text">Đăng nhập với Google</span>
-      </button>
-    </div>
-  </div>
-
-  <div class="card">
-    <div class="card-title">Thông tin cá nhân</div>
+    <div class="card-title" data-i18n="thongtin_canhan">Thông tin cá nhân</div>
     <div class="form-group">
-      <div class="form-lbl">Họ tên</div>
-      <input class="form-inp" id="p-name" type="text" placeholder="Nguyễn Văn A"/>
+      <div class="form-lbl" data-i18n="ho_ten">Họ tên</div>
+      <input class="form-inp" id="p-name" type="text" placeholder="Nguyễn Văn A" data-i18n-ph="ph_hoten"/>
     </div>
     <div class="form-group">
-      <div class="form-lbl">Giới tính</div>
+      <div class="form-lbl" data-i18n="gioitinh">Giới tính</div>
       <div class="seg">
-        <button class="seg-btn active" id="seg-male" onclick="setSex('male')">Nam</button>
-        <button class="seg-btn" id="seg-female" onclick="setSex('female')">Nữ</button>
+        <button class="seg-btn active" id="seg-male" onclick="setSex('male')" data-i18n="nam">Nam</button>
+        <button class="seg-btn" id="seg-female" onclick="setSex('female')" data-i18n="nu">Nữ</button>
       </div>
     </div>
     <div class="form-row form-group">
-      <div><div class="form-lbl">Tuổi</div><input class="form-inp" id="p-age" type="number" placeholder="28" min="10" max="99"/></div>
-      <div><div class="form-lbl">Chiều cao (cm)</div><input class="form-inp" id="p-height" type="number" placeholder="175"/></div>
+      <div><div class="form-lbl" data-i18n="tuoi">Tuổi</div><input class="form-inp" id="p-age" type="number" placeholder="28" min="10" max="99"/></div>
+      <div><div class="form-lbl" data-i18n="chieucao">Chiều cao (cm)</div><input class="form-inp" id="p-height" type="number" placeholder="175"/></div>
     </div>
     <div class="form-group">
-      <div class="form-lbl">Cân nặng (kg)</div>
+      <div class="form-lbl" data-i18n="cannang">Cân nặng (kg)</div>
       <input class="form-inp" id="p-weight" type="number" placeholder="82"/>
     </div>
     <div class="form-group">
-      <div class="form-lbl">Mức độ vận động</div>
+      <div class="form-lbl" data-i18n="mucdo_vandong">Mức độ vận động</div>
       <select class="sel-inp" id="p-activity">
-        <option value="1.2">Ít vận động (ngồi văn phòng)</option>
-        <option value="1.375" selected>Vận động nhẹ (1–3 buổi/tuần)</option>
-        <option value="1.55">Vận động vừa (3–5 buổi/tuần)</option>
-        <option value="1.725">Vận động nhiều (6–7 buổi/tuần)</option>
+        <option value="1.2" data-i18n="vd_it">Ít vận động (ngồi văn phòng)</option>
+        <option value="1.375" selected data-i18n="vd_nhe">Vận động nhẹ (1–3 buổi/tuần)</option>
+        <option value="1.55" data-i18n="vd_vua">Vận động vừa (3–5 buổi/tuần)</option>
+        <option value="1.725" data-i18n="vd_nhieu">Vận động nhiều (6–7 buổi/tuần)</option>
       </select>
     </div>
-    <button class="apply-btn" onclick="calcTDEE()">Tính TDEE của tôi ↗</button>
+    <button class="apply-btn" onclick="calcTDEE()" data-i18n="tinh_tdee_btn">Tính TDEE của tôi ↗</button>
   </div>
 
   <div class="tdee-hero" id="tdee-result" style="display:none">
-    <div class="tdee-lbl-sm">TDEE của bạn</div>
+    <div class="tdee-lbl-sm" data-i18n="tdee_cuaban">TDEE của bạn</div>
     <div class="tdee-main" id="tdee-val">–</div>
-    <div style="font-size:11.5px;color:var(--text3)">kcal/ngày để duy trì cân nặng hiện tại</div>
+    <div style="font-size:11.5px;color:var(--text3)" data-i18n="tdee_subtext">kcal/ngày để duy trì cân nặng hiện tại</div>
     <div class="tdee-grid">
-      <div class="tdee-item"><div class="tdee-item-val" id="tdee-bmi">–</div><div class="tdee-item-lbl">BMI</div></div>
-      <div class="tdee-item"><div class="tdee-item-val" id="tdee-status">–</div><div class="tdee-item-lbl">Trạng thái</div></div>
-      <div class="tdee-item"><div class="tdee-item-val" id="tdee-p">–g</div><div class="tdee-item-lbl">Protein/ngày</div></div>
-      <div class="tdee-item"><div class="tdee-item-val" id="tdee-bmr">–</div><div class="tdee-item-lbl">BMR cơ bản</div></div>
+      <div class="tdee-item"><div class="tdee-item-val" id="tdee-bmi">–</div><div class="tdee-item-lbl" data-i18n="bmi">BMI</div></div>
+      <div class="tdee-item"><div class="tdee-item-val" id="tdee-status">–</div><div class="tdee-item-lbl" data-i18n="trangthai">Trạng thái</div></div>
+      <div class="tdee-item"><div class="tdee-item-val" id="tdee-p">–g</div><div class="tdee-item-lbl" data-i18n="protein_ngay">Protein/ngày</div></div>
+      <div class="tdee-item"><div class="tdee-item-val" id="tdee-bmr">–</div><div class="tdee-item-lbl" data-i18n="bmr_coban">BMR cơ bản</div></div>
     </div>
   </div>
 
   <div class="card" id="goal-card" style="display:none">
-    <div class="card-title">Chọn mục tiêu</div>
+    <div class="card-title" data-i18n="chonmt">Chọn mục tiêu</div>
     <div class="goal-opts" id="goal-opts"></div>
   </div>
 
   <div class="api-box">
-    <div class="card-title" style="margin-bottom:8px">🤖 Claude AI Key</div>
-    <div id="api-key-status" style="display:none;align-items:center;gap:8px;margin-bottom:10px;padding:8px 11px;background:var(--green-dim);border-radius:9px">
-      <span style="font-size:13px;color:var(--green);font-weight:600">✓ Đã kết nối Claude AI</span>
-      <button onclick="resetApiKey()" style="margin-left:auto;background:none;border:none;font-size:11px;color:var(--text3);cursor:pointer">Đổi key</button>
+    <div class="card-title" style="margin-bottom:8px" data-i18n="gemini_aikey">🤖 Gemini AI (miễn phí)</div>
+    <div class="api-status" id="api-key-status">
+      <span id="api-key-status-text" data-i18n="daketnoi_gemini">✓ Đã kết nối Gemini AI</span>
+      <button onclick="resetApiKey()" data-i18n="doi_key">Đổi key</button>
     </div>
     <div id="api-key-form">
-      <div class="api-note">Dùng để scan ảnh & phân tích dinh dưỡng. Lấy key miễn phí tại <a href="https://console.anthropic.com" target="_blank">console.anthropic.com</a></div>
-      <input class="api-inp" id="api-key-inp" type="password" placeholder="sk-ant-api03-..." onblur="autoSaveApiKey(this.value)"/>
-      <button class="api-save-btn" onclick="saveApiKey()">Lưu API Key ✓</button>
+      <div class="api-note"><span data-i18n="apinote">Dùng để scan ảnh & phân tích dinh dưỡng. Miễn phí, không cần thẻ! Lấy key tại</span> <a href="https://aistudio.google.com/apikey" target="_blank">aistudio.google.com/apikey</a> <span data-i18n="apinote2">→ đăng nhập Google → Create API key.</span></div>
+      <input class="api-inp" id="api-key-inp" type="password" placeholder="Dán API key Gemini vào đây..." data-i18n-ph="ph_apikey" onblur="autoSaveApiKey(this.value)"/>
+      <button class="api-save-btn" onclick="saveApiKey()" data-i18n="luu_apikey">Lưu API Key ✓</button>
     </div>
   </div>
 
   <div class="card">
-    <div class="card-title">Dữ liệu & xuất file</div>
+    <div class="card-title" data-i18n="dulieu_xuatfile">Dữ liệu & xuất file</div>
     <button class="export-btn" onclick="exportJSON()" style="margin-bottom:8px">
       <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-      Tải dữ liệu về (.json)
+      <span data-i18n="tai_json">Tải dữ liệu về (.json)</span>
     </button>
     <button class="export-btn" onclick="exportCSV()">
       <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
-      Tải dữ liệu về (.csv)
+      <span data-i18n="tai_csv">Tải dữ liệu về (.csv)</span>
     </button>
   </div>
 
-  <div class="card" style="margin-top:0">
-    <div class="card-title">⚙️ Backup & Restore cài đặt</div>
-    <p style="font-size:12px;color:var(--text3);margin-bottom:11px;line-height:1.6">Lưu API key & Google ID ra file để không phải nhập lại khi đổi máy hoặc cài lại app.</p>
-    <button class="export-btn" onclick="backupSettings()" style="margin-bottom:8px">
-      <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-      Xuất file cài đặt (.json)
-    </button>
-    <label class="export-btn" style="cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px">
-      <svg viewBox="0 0 24 24" style="width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
-      Nhập file cài đặt
-      <input type="file" accept=".json" onchange="restoreSettings(event)" style="display:none"/>
-    </label>
-    <div id="restore-msg" style="display:none;margin-top:9px;padding:9px 12px;background:var(--green-dim);border-radius:9px;font-size:13px;color:var(--green);font-weight:600"></div>
-  </div>
 </div>
 
 <!-- BOTTOM NAV -->
 <div class="bottom-nav">
   <div class="nav-inner">
     <button class="nav-btn active" onclick="switchTab('today',this)" id="nav-today">
-      <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>Hôm nay
+      <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg><span data-i18n="nav_today">Hôm nay</span>
     </button>
     <button class="nav-btn" onclick="switchTab('chart',this)" id="nav-chart">
-      <svg viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>Biểu đồ
+      <svg viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg><span data-i18n="nav_chart">Biểu đồ</span>
     </button>
-    <div class="nav-center">
-      <button class="nav-fab" onclick="openSheet()" aria-label="Thêm ghi chép">
-        <svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-      </button>
-    </div>
-    <button class="nav-btn" onclick="switchTab('analysis',this)" id="nav-analysis">
-      <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="M11 8v3l2 2"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>Phân tích
+    <button class="nav-btn" onclick="switchTab('history',this)" id="nav-history">
+      <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><span data-i18n="nav_history">Lịch sử</span>
+    </button>
+    <button class="nav-btn" onclick="switchTab('trends',this)" id="nav-trends">
+      <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="M11 8v3l2 2"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg><span data-i18n="nav_trends">Phân tích</span>
     </button>
     <button class="nav-btn" onclick="switchTab('profile',this)" id="nav-profile">
-      <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>Hồ sơ
+      <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg><span data-i18n="nav_profile">Hồ sơ</span>
     </button>
   </div>
 </div>
+<button class="fab-floating" onclick="openSheet()" aria-label="Thêm ghi chép">
+  <svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+</button>
 
 <!-- SHEET: Add Log -->
 <div class="overlay" id="overlay" onclick="closeSheet()"></div>
 <div class="sheet" id="sheet">
   <div class="handle"></div>
-  <div class="sheet-h">Ghi chép mới</div>
+  <div class="sheet-h" data-i18n="sheet_title_new">Ghi chép mới</div>
   <div class="type-grid">
-    <button class="type-card sel-food" id="tc-food" onclick="selType('food')"><span class="tc-icon">🍚</span>Bữa ăn</button>
-    <button class="type-card" id="tc-ex" onclick="selType('exercise')"><span class="tc-icon">🏃</span>Vận động</button>
+    <button class="type-card sel-food" id="tc-food" onclick="selType('food')"><span class="tc-icon">🍚</span><span data-i18n="bua_an">Bữa ăn</span></button>
+    <button class="type-card" id="tc-ex" onclick="selType('exercise')"><span class="tc-icon">🏃</span><span data-i18n="vandong">Vận động</span></button>
   </div>
-  <div class="field"><div class="field-lbl" id="f-label">Tên món ăn</div>
-    <input class="inp" id="inp-name" type="text" placeholder="Ví dụ: Cơm gà, Phở bò..." autocomplete="off"/></div>
-  <div class="field"><div class="field-lbl">Calo (kcal)</div>
+  <div class="field"><div class="field-lbl" id="f-label" data-i18n="ten_mon_an">Tên món ăn</div>
+    <input class="inp" id="inp-name" type="text" placeholder="Ví dụ: Cơm gà, Phở bò..." data-i18n-ph="ph_ten_mon" autocomplete="off"/></div>
+  <div class="field"><div class="field-lbl" data-i18n="calo_kcal">Calo (kcal)</div>
     <input class="inp inp-cal" id="inp-cal" type="number" placeholder="0" min="0" inputmode="numeric"/></div>
-  <div class="quick-lbl">Gợi ý nhanh</div>
+  <div class="quick-lbl" data-i18n="goi_y_nhanh">Gợi ý nhanh</div>
   <div class="quick-wrap" id="quick-wrap"></div>
-  <button class="save-btn" onclick="saveItem()">Lưu ghi chép ✓</button>
+  <button class="save-btn" onclick="saveItem()" data-i18n="luu_ghichep">Lưu ghi chép ✓</button>
 </div>
 
 <!-- SHEET: AI Scan -->
 <div class="overlay" id="ai-overlay" onclick="closeAI()"></div>
 <div class="sheet" id="ai-sheet">
   <div class="handle"></div>
-  <div class="sheet-h">📷 AI phân tích ảnh</div>
+  <div class="sheet-h" data-i18n="ai_scan_title">📷 AI phân tích ảnh</div>
   <input type="file" id="ai-file-inp" accept="image/*" style="display:none" onchange="handleAIFile(event)"/>
   <div id="ai-content">
     <div style="text-align:center;padding:16px 0 20px">
       <div style="font-size:46px;margin-bottom:10px">🥗</div>
-      <div style="font-size:13.5px;color:var(--text3);margin-bottom:16px;line-height:1.6">Chụp hoặc chọn ảnh món ăn<br>AI sẽ ước tính calo tự động</div>
+      <div style="font-size:13.5px;color:var(--text3);margin-bottom:16px;line-height:1.6" data-i18n="ai_scan_init">Chụp hoặc chọn ảnh món ăn<br>AI sẽ ước tính calo tự động</div>
       <div style="display:flex;gap:9px">
-        <button class="save-btn" style="background:var(--surface2);color:var(--text2);box-shadow:none" onclick="triggerCamera()">📷 Chụp ảnh</button>
-        <button class="save-btn" onclick="triggerUpload()">🖼️ Chọn ảnh</button>
+        <button class="save-btn" style="background:var(--surface2);color:var(--text2);box-shadow:none" onclick="triggerCamera()">📷 <span data-i18n="chup_anh">Chụp ảnh</span></button>
+        <button class="save-btn" onclick="triggerUpload()">🖼️ <span data-i18n="tai_anh">Tải ảnh</span></button>
       </div>
     </div>
   </div>
+</div>
+
+<!-- SHEET: Edit Past Day -->
+<div class="overlay" id="edit-overlay" onclick="closeEditDay()"></div>
+<div class="sheet" id="edit-sheet">
+  <div class="handle"></div>
+  <div class="sheet-h" id="edit-day-label">Chỉnh sửa ngày</div>
+  <div style="font-size:13px;color:var(--text3);margin-bottom:14px" id="edit-day-summary">Nạp: 0 kcal · Đốt: 0 kcal</div>
+
+  <div class="type-grid">
+    <button class="type-card sel-food" id="edit-type-food" onclick="selEditType('food')"><span class="tc-icon">🍚</span><span data-i18n="bua_an">Bữa ăn</span></button>
+    <button class="type-card" id="edit-type-ex" onclick="selEditType('exercise')"><span class="tc-icon">🏃</span><span data-i18n="vandong">Vận động</span></button>
+  </div>
+  <div class="field"><div class="field-lbl" data-i18n="ten_label">Tên</div>
+    <input class="inp" id="edit-inp-name" type="text" placeholder="Ví dụ: Cơm gà, Đi bộ 30ph..." data-i18n-ph="ph_ten_edit"/></div>
+  <div class="field"><div class="field-lbl" data-i18n="calo_kcal">Calo (kcal)</div>
+    <input class="inp inp-cal" id="edit-inp-cal" type="number" placeholder="0" min="0" inputmode="numeric"/></div>
+  <button class="save-btn" onclick="addEditDayItem()" style="margin-bottom:16px" data-i18n="them_vao_ngay">Thêm vào ngày này ✓</button>
+
+  <div class="sec-lbl" data-i18n="ghichep_dacco">Ghi chép đã có</div>
+  <div class="log-list" id="edit-day-list" style="margin-bottom:10px"></div>
+
+  <button class="save-btn" style="background:var(--surface2);color:var(--text2);box-shadow:none" onclick="closeEditDay()" data-i18n="xong">Xong</button>
 </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
 <script>
 const DEFAULT_GOAL=1870;
 const QUICK_DATA={
-  food:[{n:'Cơm trắng 1 bát',c:260},{n:'Phở bò',c:500},{n:'Ức gà 100g',c:165},{n:'Cơm tấm',c:550},{n:'Bánh mì thịt',c:400},{n:'Bún bò',c:480},{n:'Trứng luộc',c:70},{n:'Sữa chua',c:100},{n:'Chuối',c:90},{n:'Cơm gà',c:480},{n:'Bún thịt nướng',c:520}],
-  exercise:[{n:'Đi bộ 30ph',c:160},{n:'Đi bộ nhanh 45ph',c:290},{n:'Đi bộ nhanh 60ph',c:380},{n:'Chạy bộ 30ph',c:320},{n:'Đạp xe 30ph',c:250},{n:'Tập gym 1h',c:400},{n:'Bơi lội 30ph',c:300},{n:'Yoga 45ph',c:150}]
+  vi:{
+    food:[{n:'Cơm trắng 1 bát',c:260},{n:'Phở bò',c:500},{n:'Ức gà 100g',c:165},{n:'Cơm tấm',c:550},{n:'Bánh mì thịt',c:400},{n:'Bún bò',c:480},{n:'Trứng luộc',c:70},{n:'Sữa chua',c:100},{n:'Chuối',c:90},{n:'Cơm gà',c:480},{n:'Bún thịt nướng',c:520}],
+    exercise:[{n:'Đi bộ 30ph',c:160},{n:'Đi bộ nhanh 45ph',c:290},{n:'Đi bộ nhanh 60ph',c:380},{n:'Chạy bộ 30ph',c:320},{n:'Đạp xe 30ph',c:250},{n:'Tập gym 1h',c:400},{n:'Bơi lội 30ph',c:300},{n:'Yoga 45ph',c:150}]
+  },
+  en:{
+    food:[{n:'White rice 1 bowl',c:260},{n:'Beef pho',c:500},{n:'Chicken breast 100g',c:165},{n:'Broken rice',c:550},{n:'Meat sandwich',c:400},{n:'Bun bo',c:480},{n:'Boiled egg',c:70},{n:'Yogurt',c:100},{n:'Banana',c:90},{n:'Chicken rice',c:480},{n:'Grilled pork noodles',c:520}],
+    exercise:[{n:'Walk 30min',c:160},{n:'Brisk walk 45min',c:290},{n:'Brisk walk 60min',c:380},{n:'Run 30min',c:320},{n:'Cycling 30min',c:250},{n:'Gym 1h',c:400},{n:'Swimming 30min',c:300},{n:'Yoga 45min',c:150}]
+  }
 };
-const AI_QUICK=[
-  'Calo của bát phở bò?','Gợi ý bữa sáng lành mạnh','Phân tích chế độ ăn của tôi hôm nay','Tôi cần ăn gì để đủ protein?','So sánh cơm và bún về calo','Bài tập đốt 300 kcal?'
-];
+const AI_QUICK={
+  vi:['Calo của bát phở bò?','Gợi ý bữa sáng lành mạnh','Phân tích chế độ ăn của tôi hôm nay','Tôi cần ăn gì để đủ protein?','So sánh cơm và bún về calo','Bài tập đốt 300 kcal?'],
+  en:['Calories in a bowl of beef pho?','Suggest a healthy breakfast','Analyze my diet today','What should I eat for enough protein?','Compare rice and noodles calories','Workout to burn 300 kcal?']
+};
+
+// ===== I18N =====
+const I18N={
+  vi:{
+    greet_morning:'Xin chào buổi sáng ☀️', greet_afternoon:'Xin chào buổi chiều 🌤️', greet_evening:'Xin chào buổi tối 🌙', greet_night:'Chào buổi tối 🌙',
+    weekdays:['CN','Thứ 2','Thứ 3','Thứ 4','Thứ 5','Thứ 6','Thứ 7'], weekdays_full:['Chủ nhật','Thứ hai','Thứ ba','Thứ tư','Thứ năm','Thứ sáu','Thứ bảy'],
+    today:'Hôm nay', yesterday:'Hôm qua',
+    nav_today:'Hôm nay', nav_chart:'Biểu đồ', nav_history:'Lịch sử', nav_trends:'Phân tích', nav_profile:'Hồ sơ',
+    da_nap:'đã nạp', con_lai:'Còn lại hôm nay', kcal:'kcal', muc_tieu:'Mục tiêu', dang_tot:'Đang tốt', sap_du:'Sắp đủ', dat_gioi_han:'Đạt giới hạn', vuot_muc:'Vượt mức!',
+    nap_vao:'Nạp vào', dot_chay:'Đốt cháy', kcal_homnay:'kcal hôm nay', kcal_vandong:'kcal vận động',
+    dinhduong_homnay:'Dinh dưỡng hôm nay', protein:'Protein', carb:'Carb', chatbeo:'Chất béo',
+    chup_anh:'Chụp ảnh', tai_anh:'Tải ảnh',
+    nhatky_homnay:'Nhật ký hôm nay', xoa_tatca:'Xóa tất cả', confirm_xoa_homnay:'Xóa toàn bộ hôm nay?',
+    chua_co_ghichep:'Chưa có ghi chép nào', bam_de_batdau:'Bấm ＋ hoặc chụp ảnh để bắt đầu', bam_de_batdau_full:'Chưa có ghi chép nào<br>Bấm ＋ hoặc chụp ảnh để bắt đầu',
+    an:'Ăn', vandong:'Vận động',
+    sheet_title_new:'Ghi chép mới', bua_an:'Bữa ăn', ten_mon_an:'Tên món ăn', ten_hoatdong:'Tên hoạt động',
+    ph_ten_mon:'Ví dụ: Cơm gà, Phở bò...', ph_ten_hoatdong:'Ví dụ: Đi bộ nhanh 45 phút...',
+    calo_kcal:'Calo (kcal)', goi_y_nhanh:'Gợi ý nhanh', luu_ghichep:'Lưu ghi chép ✓',
+    ai_scan_title:'📷 AI phân tích ảnh', ai_scan_init:'Chụp hoặc chọn ảnh món ăn<br>AI sẽ ước tính calo tự động',
+    ai_dang_phantich:'AI đang phân tích...', dieu_chinh_kcal:'Điều chỉnh kcal nếu cần', them_vao_nhatky:'Thêm vào nhật ký ✓', bo_qua:'Bỏ qua', dong:'Đóng',
+    chua_co_apikey_scan:'⚠️ Chưa có API key.\nVào Hồ sơ → nhập Gemini API key để dùng tính năng này.',
+    khong_nhandang:'Không nhận dạng được. Thử ảnh rõ hơn nhé!',
+    p7:'7 ngày', p30:'30 ngày', calo_vs:'Calo nạp vào vs. Đốt cháy', phanbo_macro:'Phân bổ macro (trung bình)',
+    tb_nap:'TB nạp/ngày', tb_dot:'TB đốt/ngày', ngay_ghichep:'Ngày ghi chép',
+    h30days:'30 ngày gần nhất', chua_co_lichsu:'Chưa có dữ liệu', bam_them_lichsu:'Bấm để thêm ghi chép cho ngày này',
+    dat:'✓ Đạt', vuot:'✗ Vượt', kcal_nap:'kcal nạp', kcal_dot:'kcal đốt', con_lai_short:'còn lại',
+    edit_title:'Chỉnh sửa ngày', xong:'Xong', ghichep_dacco:'Ghi chép đã có', them_vao_ngay:'Thêm vào ngày này ✓', ten_label:'Tên', ph_ten_edit:'Ví dụ: Cơm gà, Đi bộ 30ph...',
+    canbang_chuyenhoa:'Cân bằng chuyển hóa dự báo', canbang_sub:'Dựa trên TDEE và chỉ số nạp, chúng tôi tính toán biến đổi cơ thể sau 30 ngày tới.',
+    trangthai_calo:'Trạng thái calo thực nạp', hut_calo:'Hụt calo', du_calo:'Dư calo', can_bang:'Cân bằng', kcal_ngay:'kcal / ngày',
+    balance_desc_pre:'Nếu tiếp tục duy trì mức dinh dưỡng này, cân nặng cơ thể ước tính sẽ thay đổi', balance_desc_post:'sau 30 ngày.',
+    tyle_datmt:'Tỷ lệ đạt mục tiêu (30 ngày)', sn_trongmt:'% số ngày trong mục tiêu', sn:'ngày',
+    doonđinh:'Độ ổn định lượng calo nạp vào', dolechchuan:'Độ lệch chuẩn (kcal)', danhgia:'Đánh giá',
+    rat_ondinh:'Rất ổn định ✓', kha_ondinh:'Khá ổn định', daodong_nhieu:'Dao động nhiều',
+    chuandoan_ai:'Chẩn Đoán Từ Chuyên Gia Dinh Dưỡng AI', phantich_dinhduong_btn:'Phân tích dinh dưỡng bằng AI ✨', phantich_lai:'Phân tích lại', thu_lai:'Thử lại',
+    chua_apikey_diag:'⚠️ Chưa có API key Gemini.<br>Vào tab Hồ sơ → nhập API key để dùng tính năng này.',
+    can_thedu_lieu:'📊 Cần ít nhất vài ngày dữ liệu để AI phân tích chính xác. Hãy ghi chép thêm rồi quay lại nhé!',
+    khong_doc_duoc:'Không đọc được phản hồi AI. Thử phân tích lại nhé!',
+    ai_dangphantich30:'AI đang phân tích dữ liệu 30 ngày của bạn...',
+    hoi_ai_dinhduong:'Hỏi AI về dinh dưỡng', chat_placeholder:'Hỏi về dinh dưỡng, calo, món ăn...',
+    chat_welcome:'Xin chào! Tôi là trợ lý dinh dưỡng YumLog. Hỏi tôi về:<br>• Calo của món ăn bất kỳ<br>• Gợi ý bữa ăn lành mạnh<br>• Phân tích chế độ ăn của bạn<br>• Tư vấn vận động đốt calo',
+    chua_apikey_chat:'⚠️ Chưa có API key. Vào Hồ sơ → nhập Gemini API key.',
+    profile_default_name:'Hồ sơ của bạn', profile_default_sub:'Điền thông số để tính TDEE',
+    thongtin_canhan:'Thông tin cá nhân', ho_ten:'Họ tên', ph_hoten:'Nguyễn Văn A', gioitinh:'Giới tính', nam:'Nam', nu:'Nữ',
+    tuoi:'Tuổi', chieucao:'Chiều cao (cm)', cannang:'Cân nặng (kg)', mucdo_vandong:'Mức độ vận động',
+    vd_it:'Ít vận động (ngồi văn phòng)', vd_nhe:'Vận động nhẹ (1–3 buổi/tuần)', vd_vua:'Vận động vừa (3–5 buổi/tuần)', vd_nhieu:'Vận động nhiều (6–7 buổi/tuần)',
+    tinh_tdee_btn:'Tính TDEE của tôi ↗', tdee_cuaban:'TDEE của bạn', tdee_subtext:'kcal/ngày để duy trì cân nặng hiện tại',
+    bmi:'BMI', trangthai:'Trạng thái', protein_ngay:'Protein/ngày', bmr_coban:'BMR cơ bản',
+    thieucan:'Thiếu cân', binhthuong:'Bình thường', thuacan:'Thừa cân', beophi:'Béo phì',
+    chonmt:'Chọn mục tiêu', giamnhe:'Giảm nhẹ', giamvua:'Giảm vừa', giamnhanh:'Giảm nhanh', duytri:'Duy trì', tangco:'Tăng cơ',
+    sub_giamnhe:'~0.3 kg/tuần', sub_giamvua:'~0.5 kg/tuần', sub_giamnhanh:'~1 kg/tuần', sub_duytri:'Giữ cân hiện tại', sub_tangco:'Tăng khối lượng',
+    nap_kcalngay:'Nạp ~', kcalngay:'kcal/ngày',
+    gemini_aikey:'🤖 Gemini AI (miễn phí)', daketnoi_gemini:'✓ Đã kết nối Gemini AI', doi_key:'Đổi key',
+    apinote:'Dùng để scan ảnh & phân tích dinh dưỡng. Miễn phí, không cần thẻ! Lấy key tại', apinote2:'→ đăng nhập Google → Create API key.',
+    ph_apikey:'Dán API key Gemini vào đây...', luu_apikey:'Lưu API Key ✓',
+    dulieu_xuatfile:'Dữ liệu & xuất file', tai_json:'Tải dữ liệu về (.json)', tai_csv:'Tải dữ liệu về (.csv)',
+  },
+  en:{
+    greet_morning:'Good morning ☀️', greet_afternoon:'Good afternoon 🌤️', greet_evening:'Good evening 🌙', greet_night:'Good evening 🌙',
+    weekdays:['Sun','Mon','Tue','Wed','Thu','Fri','Sat'], weekdays_full:['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'],
+    today:'Today', yesterday:'Yesterday',
+    nav_today:'Today', nav_chart:'Chart', nav_history:'History', nav_trends:'Insights', nav_profile:'Profile',
+    da_nap:'consumed', con_lai:'Remaining today', kcal:'kcal', muc_tieu:'Goal', dang_tot:'On track', sap_du:'Almost there', dat_gioi_han:'At limit', vuot_muc:'Over limit!',
+    nap_vao:'Intake', dot_chay:'Burned', kcal_homnay:'kcal today', kcal_vandong:'kcal exercise',
+    dinhduong_homnay:"Today's nutrition", protein:'Protein', carb:'Carb', chatbeo:'Fat',
+    chup_anh:'Take photo', tai_anh:'Upload',
+    nhatky_homnay:"Today's log", xoa_tatca:'Clear all', confirm_xoa_homnay:'Clear all entries today?',
+    chua_co_ghichep:'No entries yet', bam_de_batdau:'Tap ＋ or take a photo to start', bam_de_batdau_full:'No entries yet<br>Tap ＋ or take a photo to start',
+    an:'Food', vandong:'Exercise',
+    sheet_title_new:'New entry', bua_an:'Meal', ten_mon_an:'Food name', ten_hoatdong:'Activity name',
+    ph_ten_mon:'e.g. Chicken rice, Beef pho...', ph_ten_hoatdong:'e.g. Brisk walk 45 min...',
+    calo_kcal:'Calories (kcal)', goi_y_nhanh:'Quick picks', luu_ghichep:'Save entry ✓',
+    ai_scan_title:'📷 AI photo analysis', ai_scan_init:'Take or choose a food photo<br>AI will estimate calories automatically',
+    ai_dang_phantich:'AI analyzing...', dieu_chinh_kcal:'Adjust calories if needed', them_vao_nhatky:'Add to log ✓', bo_qua:'Skip', dong:'Close',
+    chua_co_apikey_scan:"⚠️ No API key yet.\nGo to Profile → enter Gemini API key to use this feature.",
+    khong_nhandang:"Couldn't recognize. Try a clearer photo!",
+    p7:'7 days', p30:'30 days', calo_vs:'Intake vs. Burned', phanbo_macro:'Macro breakdown (avg)',
+    tb_nap:'Avg intake/day', tb_dot:'Avg burned/day', ngay_ghichep:'Days logged',
+    h30days:'Last 30 days', chua_co_lichsu:'No data', bam_them_lichsu:'Tap to add an entry for this day',
+    dat:'✓ On track', vuot:'✗ Over', kcal_nap:'kcal in', kcal_dot:'kcal out', con_lai_short:'left',
+    edit_title:'Edit day', xong:'Done', ghichep_dacco:'Existing entries', them_vao_ngay:'Add to this day ✓', ten_label:'Name', ph_ten_edit:'e.g. Chicken rice, Walk 30min...',
+    canbang_chuyenhoa:'Metabolic Balance Forecast', canbang_sub:'Based on your TDEE and intake data, we calculate your projected body change over the next 30 days.',
+    trangthai_calo:'Net calorie status', hut_calo:'Deficit', du_calo:'Surplus', can_bang:'Balanced', kcal_ngay:'kcal / day',
+    balance_desc_pre:'If you maintain this nutrition level, your estimated body weight will change by', balance_desc_post:'in 30 days.',
+    tyle_datmt:'Goal achievement rate (30 days)', sn_trongmt:'% of days within goal', sn:'days',
+    doonđinh:'Calorie intake stability', dolechchuan:'Std. deviation (kcal)', danhgia:'Rating',
+    rat_ondinh:'Very stable ✓', kha_ondinh:'Fairly stable', daodong_nhieu:'High fluctuation',
+    chuandoan_ai:'AI Nutrition Expert Diagnosis', phantich_dinhduong_btn:'Run AI nutrition analysis ✨', phantich_lai:'Re-analyze', thu_lai:'Try again',
+    chua_apikey_diag:'⚠️ No Gemini API key yet.<br>Go to Profile tab → enter API key to use this feature.',
+    can_thedu_lieu:'📊 Need at least a few days of data for accurate AI analysis. Log a bit more and come back!',
+    khong_doc_duoc:"Couldn't read AI response. Try analyzing again!",
+    ai_dangphantich30:'AI is analyzing your last 30 days of data...',
+    hoi_ai_dinhduong:'Ask AI about nutrition', chat_placeholder:'Ask about nutrition, calories, food...',
+    chat_welcome:'Hi! I\'m the YumLog nutrition assistant. Ask me about:<br>• Calories of any food<br>• Healthy meal suggestions<br>• Analysis of your diet<br>• Exercise advice to burn calories',
+    chua_apikey_chat:'⚠️ No API key yet. Go to Profile → enter Gemini API key.',
+    profile_default_name:'Your profile', profile_default_sub:'Fill in your stats to calculate TDEE',
+    thongtin_canhan:'Personal info', ho_ten:'Full name', ph_hoten:'John Doe', gioitinh:'Sex', nam:'Male', nu:'Female',
+    tuoi:'Age', chieucao:'Height (cm)', cannang:'Weight (kg)', mucdo_vandong:'Activity level',
+    vd_it:'Sedentary (office job)', vd_nhe:'Light activity (1–3 sessions/week)', vd_vua:'Moderate activity (3–5 sessions/week)', vd_nhieu:'High activity (6–7 sessions/week)',
+    tinh_tdee_btn:'Calculate my TDEE ↗', tdee_cuaban:'Your TDEE', tdee_subtext:'kcal/day to maintain current weight',
+    bmi:'BMI', trangthai:'Status', protein_ngay:'Protein/day', bmr_coban:'Base BMR',
+    thieucan:'Underweight', binhthuong:'Normal', thuacan:'Overweight', beophi:'Obese',
+    chonmt:'Choose your goal', giamnhe:'Mild loss', giamvua:'Moderate loss', giamnhanh:'Fast loss', duytri:'Maintain', tangco:'Build muscle',
+    sub_giamnhe:'~0.3 kg/week', sub_giamvua:'~0.5 kg/week', sub_giamnhanh:'~1 kg/week', sub_duytri:'Keep current weight', sub_tangco:'Increase mass',
+    nap_kcalngay:'Eat ~', kcalngay:'kcal/day',
+    gemini_aikey:'🤖 Gemini AI (free)', daketnoi_gemini:'✓ Connected to Gemini AI', doi_key:'Change key',
+    apinote:'Used for photo scan & nutrition analysis. Free, no card needed! Get a key at', apinote2:'→ sign in with Google → Create API key.',
+    ph_apikey:'Paste your Gemini API key here...', luu_apikey:'Save API Key ✓',
+    dulieu_xuatfile:'Data & export', tai_json:'Download data (.json)', tai_csv:'Download data (.csv)',
+  }
+};
+let LANG=localStorage.getItem('yl_lang')||'vi';
+function t(key){ return (I18N[LANG]&&I18N[LANG][key])!==undefined ? I18N[LANG][key] : (I18N.vi[key]||key); }
+function toggleLang(){
+  LANG=LANG==='vi'?'en':'vi';
+  localStorage.setItem('yl_lang',LANG);
+  applyLanguage();
+}
+function applyLanguage(){
+  document.documentElement.lang=LANG;
+  document.getElementById('lang-flag').textContent=LANG==='vi'?'🇻🇳':'🇬🇧';
+  document.getElementById('lang-code').textContent=LANG==='vi'?'VN':'EN';
+  document.querySelectorAll('[data-i18n]').forEach(el=>{ el.innerHTML=t(el.getAttribute('data-i18n')); });
+  document.querySelectorAll('[data-i18n-ph]').forEach(el=>{ el.placeholder=t(el.getAttribute('data-i18n-ph')); });
+  refreshGreeting();
+  renderToday();
+  buildQuick(curType);
+  // re-render whichever tab is currently active so dynamic strings update
+  const activeTab=document.querySelector('.scroll.active');
+  if(activeTab){
+    const id=activeTab.id;
+    if(id==='tab-chart') renderChart();
+    if(id==='tab-history') renderHistory();
+    if(id==='tab-trends'){ renderTrends(); renderQuickAI(); }
+    if(id==='tab-profile') loadProfile();
+  }
+}
 
 let curType='food',curSex='male',selectedGoal=-500;
 let barChart=null,donutChart=null,curPeriod='week';
-let gUser=null;
 
-// Storage
 function todayKey(){return 'yl_'+new Date().toISOString().slice(0,10)}
 function dateKey(d){return 'yl_'+d.toISOString().slice(0,10)}
 function getLogs(k){try{return JSON.parse(localStorage.getItem(k||todayKey())||'[]')}catch{return[]}}
@@ -628,102 +840,38 @@ function saveLogs(l){localStorage.setItem(todayKey(),JSON.stringify(l))}
 function getGoal(){return parseInt(localStorage.getItem('yl_goal'))||DEFAULT_GOAL}
 function getProfile(){try{return JSON.parse(localStorage.getItem('yl_profile')||'{}')}catch{return{}}}
 function saveProfile(p){localStorage.setItem('yl_profile',JSON.stringify(p))}
-function getApiKey(){return localStorage.getItem('yl_apikey')||''}
-function fmt(n){return Math.round(n).toLocaleString('vi-VN')}
-function nowTime(){const d=new Date();return d.getHours().toString().padStart(2,'0')+':'+d.getMinutes().toString().padStart(2,'0')}
+function getApiKey(){return localStorage.getItem('yl_apikey_gemini')||''}
 
-// Greeting
-(function(){
-  const h=new Date().getHours();
-  const p=getProfile();
-  const name=gUser?.name||p.name||'';
-  const greet=h<6?'Chào buổi tối 🌙':h<12?'Xin chào buổi sáng ☀️':h<18?'Xin chào buổi chiều 🌤️':'Xin chào buổi tối 🌙';
-  document.getElementById('greeting-text').textContent=greet+(name?' · '+name.split(' ').pop():'');
-})();
+async function fetchGeminiWithRetry(body,key,onRetry){
+  const url='https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key='+key;
+  const delays=[1500,3000,6000]; // ms before each retry
+  let lastData=null;
+  for(let attempt=0;attempt<=delays.length;attempt++){
+    const res=await fetch(url,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)});
+    const data=await res.json();
+    const msg=data.error?.message||'';
+    const overloaded=/overloaded|high demand|unavailable|503/i.test(msg)||res.status===503;
+    if(!overloaded||!data.error){ return data; }
+    lastData=data;
+    if(attempt<delays.length){
+      if(onRetry) onRetry(attempt+1,delays.length+1);
+      await new Promise(r=>setTimeout(r,delays[attempt]));
+    }
+  }
+  return lastData;
+}
+function fmt(n){return Math.round(n).toLocaleString('en-US')}
+function nowTime(){const d=new Date();return d.getHours().toString().padStart(2,'0')+':'+d.getMinutes().toString().padStart(2,'0')}
 
 function refreshGreeting(){
   const h=new Date().getHours();
   const p=getProfile();
-  const name=gUser?.name||p.name||'';
-  const greet=h<6?'Chào buổi tối 🌙':h<12?'Xin chào buổi sáng ☀️':h<18?'Xin chào buổi chiều 🌤️':'Xin chào buổi tối 🌙';
+  const name=p.name||'';
+  const greet=h<6?t('greet_night'):h<12?t('greet_morning'):h<18?t('greet_afternoon'):t('greet_evening');
   document.getElementById('greeting-text').textContent=greet+(name?' · '+name.split(' ').pop():'');
 }
+refreshGreeting();
 
-// Google Sign-In — redirect/implicit flow (Safari compatible)
-function loadGoogleScript(clientId){ /* not used in redirect flow */ }
-
-function handleGoogleLogin(){
-  const clientId=localStorage.getItem('yl_gclient');
-  if(!clientId){alert('Chưa có Client ID!');return}
-  if(gUser){
-    if(confirm('Đăng xuất khỏi '+gUser.name+'?')){
-      gUser=null;localStorage.removeItem('yl_guser');updateUserUI(null);
-    }
-    return;
-  }
-  const redirectUri=location.origin+location.pathname.replace(/\/$/,'')+'/';
-  const state=Math.random().toString(36).slice(2);
-  localStorage.setItem('yl_oauth_state',state);
-  const url='https://accounts.google.com/o/oauth2/v2/auth'
-    +'?client_id='+encodeURIComponent(clientId)
-    +'&redirect_uri='+encodeURIComponent(redirectUri)
-    +'&response_type=token'
-    +'&scope='+encodeURIComponent('openid email profile')
-    +'&state='+state;
-  location.href=url;
-}
-
-function handleOAuthCallback(){
-  const hash=location.hash.substring(1);
-  if(!hash||!hash.includes('access_token')) return;
-  const params={};hash.split('&').forEach(p=>{const[k,v]=p.split('=');params[k]=decodeURIComponent(v)});
-  history.replaceState(null,'',location.pathname);
-  fetch('https://www.googleapis.com/oauth2/v3/userinfo',{
-    headers:{Authorization:'Bearer '+params.access_token}
-  }).then(r=>r.json()).then(info=>{
-    gUser={name:info.name,email:info.email,picture:info.picture};
-    localStorage.setItem('yl_guser',JSON.stringify(gUser));
-    updateUserUI(gUser);refreshGreeting();
-    switchTab('today',document.getElementById('nav-today'));
-  }).catch(e=>console.log('userinfo error',e));
-}
-
-function handleCredentialResponse(r){
-  const p=JSON.parse(atob(r.credential.split('.')[1]));
-  gUser={name:p.name,email:p.email,picture:p.picture};
-  updateUserUI(gUser);refreshGreeting();
-}
-
-function updateUserUI(u){
-  const ava=document.getElementById('user-avatar');
-  const profAva=document.getElementById('prof-ava');
-  const btn=document.getElementById('google-btn');
-  const btnTxt=document.getElementById('google-btn-text');
-  if(u){
-    if(u.picture){
-      ava.innerHTML=`<img src="${u.picture}" alt="${u.name}" style="width:100%;height:100%;object-fit:cover;border-radius:50%"/>`;
-      profAva.innerHTML=`<img src="${u.picture}" alt="${u.name}" style="width:100%;height:100%;object-fit:cover;border-radius:50%"/>`;
-    } else {
-      const init=u.name.split(' ').map(w=>w[0]).join('').slice(0,2).toUpperCase();
-      ava.textContent=init;profAva.textContent=init;
-    }
-    document.getElementById('prof-name-text').textContent=u.name;
-    document.getElementById('prof-sub-text').textContent=u.email;
-    btn.classList.add('signed-in');
-    btnTxt.textContent='Đăng xuất ('+u.name.split(' ').pop()+')';
-    if(!document.getElementById('p-name').value) document.getElementById('p-name').value=u.name;
-  } else {
-    ava.textContent='CT';profAva.textContent='CT';
-    document.getElementById('prof-name-text').textContent='Hồ sơ của bạn';
-    document.getElementById('prof-sub-text').textContent='Điền thông số để tính TDEE';
-    btn.classList.remove('signed-in');
-    btnTxt.textContent='Đăng nhập với Google';
-  }
-}
-// Load saved Google client on start
-(function(){const c=localStorage.getItem('yl_gclient');if(c)loadGoogleScript(c);})();
-
-// Tab switch
 function switchTab(tab,btn){
   document.querySelectorAll('.scroll').forEach(s=>s.classList.remove('active'));
   document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active'));
@@ -731,17 +879,13 @@ function switchTab(tab,btn){
   if(btn) btn.classList.add('active');
   if(tab==='chart') setTimeout(renderChart,80);
   if(tab==='history') renderHistory();
+  if(tab==='trends'){ renderTrends(); renderQuickAI(); }
   if(tab==='profile') loadProfile();
-  if(tab==='analysis') renderQuickAI();
 }
-function switchToProfile(){
-  switchTab('profile',document.getElementById('nav-profile'));
-}
+function switchToProfile(){ switchTab('profile',document.getElementById('nav-profile')); }
 
-// TODAY RENDER
 function renderToday(){
   const GOAL=getGoal();
-  const p=getProfile();
   const PT=parseInt(localStorage.getItem('yl_p_target'))||158;
   const CT=parseInt(localStorage.getItem('yl_c_target'))||193;
   const FT=parseInt(localStorage.getItem('yl_f_target'))||62;
@@ -754,14 +898,14 @@ function renderToday(){
   document.getElementById('ring-fill').style.strokeDashoffset=circ-(circ*pct/100);
   document.getElementById('ring-pct').textContent=pct+'%';
   document.getElementById('net-val').textContent=fmt(Math.max(0,net));
-  document.getElementById('goal-lbl').textContent='Mục tiêu: '+fmt(GOAL)+' kcal/ngày';
+  document.getElementById('goal-lbl').textContent=t('muc_tieu')+': '+fmt(GOAL)+' '+t('kcal')+'/'+(LANG==='vi'?'ngày':'day');
   document.getElementById('s-eaten').textContent=fmt(eaten);
   document.getElementById('s-burned').textContent=fmt(burned);
   const pill=document.getElementById('status-pill');const txt=document.getElementById('status-txt');const dot=document.getElementById('sdot');const ring=document.getElementById('ring-fill');
-  if(eaten>GOAL+200){pill.className='status-pill sp-over';dot.style.background='var(--red)';txt.textContent='Vượt mức!';ring.style.stroke='var(--red)'}
-  else if(eaten>GOAL){pill.className='status-pill sp-warn';dot.style.background='var(--amber)';txt.textContent='Đạt giới hạn';ring.style.stroke='var(--amber)'}
-  else if(net<400){pill.className='status-pill sp-warn';dot.style.background='var(--amber)';txt.textContent='Sắp đủ';ring.style.stroke='var(--amber)'}
-  else{pill.className='status-pill sp-ok';dot.style.background='var(--green)';txt.textContent='Đang tốt';ring.style.stroke='#c9a84c'}
+  if(eaten>GOAL+200){pill.className='status-pill sp-over';dot.style.background='var(--red)';txt.textContent=t('vuot_muc');ring.style.stroke='var(--red)'}
+  else if(eaten>GOAL){pill.className='status-pill sp-warn';dot.style.background='var(--amber)';txt.textContent=t('dat_gioi_han');ring.style.stroke='var(--amber)'}
+  else if(net<400){pill.className='status-pill sp-warn';dot.style.background='var(--amber)';txt.textContent=t('sap_du');ring.style.stroke='var(--amber)'}
+  else{pill.className='status-pill sp-ok';dot.style.background='var(--green)';txt.textContent=t('dang_tot');ring.style.stroke='#c9a84c'}
   const gP=Math.round(eaten*.30/4),gC=Math.round(eaten*.43/4),gF=Math.round(eaten*.27/9);
   document.getElementById('mac-p').textContent=gP+'/'+PT+'g';
   document.getElementById('mac-c').textContent=gC+'/'+CT+'g';
@@ -775,8 +919,8 @@ function renderToday(){
   [...logs].reverse().forEach(l=>{
     const div=document.createElement('div');div.className='log-item';
     const icon=l.type==='food'
-      ?'<svg viewBox="0 0 24 24" style="stroke:var(--green)"><path d="M18 8h1a4 4 0 010 8h-1"/><path d="M2 8h16v9a4 4 0 01-4 4H6a4 4 0 01-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg>'
-      :'<svg viewBox="0 0 24 24" style="stroke:var(--gold)"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>';
+      ?'<svg viewBox="0 0 24 24" style="stroke:var(--green);fill:none;stroke-width:1.8"><path d="M18 8h1a4 4 0 010 8h-1"/><path d="M2 8h16v9a4 4 0 01-4 4H6a4 4 0 01-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg>'
+      :'<svg viewBox="0 0 24 24" style="stroke:var(--gold);fill:none;stroke-width:1.8"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>';
     div.innerHTML=`<div class="log-icon ${l.type==='food'?'li-food':'li-ex'}">${icon}</div>
       <div class="log-body"><div class="log-name">${l.name}</div><div class="log-time">${l.time||''}</div></div>
       <div class="log-cal ${l.type==='exercise'?'log-cal-ex':''}">${l.type==='exercise'?'−':''}${fmt(l.cal)}</div>
@@ -784,21 +928,20 @@ function renderToday(){
     list.appendChild(div);
   });
 }
-function clearToday(){if(confirm('Xóa toàn bộ hôm nay?')){saveLogs([]);renderToday()}}
+function clearToday(){if(confirm(t('confirm_xoa_homnay'))){saveLogs([]);renderToday()}}
 function delItem(id){saveLogs(getLogs().filter(l=>l.id!==id));renderToday()}
 
-// Sheet
-function selType(t){
-  curType=t;
-  document.getElementById('tc-food').className='type-card'+(t==='food'?' sel-food':'');
-  document.getElementById('tc-ex').className='type-card'+(t==='exercise'?' sel-ex':'');
-  document.getElementById('f-label').textContent=t==='food'?'Tên món ăn':'Tên hoạt động';
-  document.getElementById('inp-name').placeholder=t==='food'?'Ví dụ: Cơm gà, Phở bò...':'Ví dụ: Đi bộ nhanh 45 phút...';
-  buildQuick(t);
+function selType(typ){
+  curType=typ;
+  document.getElementById('tc-food').className='type-card'+(typ==='food'?' sel-food':'');
+  document.getElementById('tc-ex').className='type-card'+(typ==='exercise'?' sel-ex':'');
+  document.getElementById('f-label').textContent=typ==='food'?t('ten_mon_an'):t('ten_hoatdong');
+  document.getElementById('inp-name').placeholder=typ==='food'?t('ph_ten_mon'):t('ph_ten_hoatdong');
+  buildQuick(typ);
 }
-function buildQuick(t){
+function buildQuick(type){
   const w=document.getElementById('quick-wrap');w.innerHTML='';
-  QUICK_DATA[t].forEach(q=>{const b=document.createElement('button');b.className='quick-pill';b.textContent=q.n+' · '+q.c+'kcal';b.onclick=()=>{document.getElementById('inp-name').value=q.n;document.getElementById('inp-cal').value=q.c};w.appendChild(b)});
+  QUICK_DATA[LANG][type].forEach(q=>{const b=document.createElement('button');b.className='quick-pill';b.textContent=q.n+' · '+q.c+'kcal';b.onclick=()=>{document.getElementById('inp-name').value=q.n;document.getElementById('inp-cal').value=q.c};w.appendChild(b)});
 }
 function openSheet(n,c){
   buildQuick(curType);
@@ -823,7 +966,6 @@ function saveItem(){
   saveLogs(logs);closeSheet();renderToday();
 }
 
-// AI Scan
 function openAIScan(mode){
   const inp=document.getElementById('ai-file-inp');
   mode==='camera'?inp.setAttribute('capture','environment'):inp.removeAttribute('capture');
@@ -837,7 +979,7 @@ function closeAI(){
   document.getElementById('ai-file-inp').value='';
 }
 function getAIInitHTML(){
-  return`<div style="text-align:center;padding:16px 0 20px"><div style="font-size:46px;margin-bottom:10px">🥗</div><div style="font-size:13.5px;color:var(--text3);margin-bottom:16px;line-height:1.6">Chụp hoặc chọn ảnh món ăn<br>AI sẽ ước tính calo tự động</div><div style="display:flex;gap:9px"><button class="save-btn" style="background:var(--surface2);color:var(--text2);box-shadow:none" onclick="triggerCamera()">📷 Chụp ảnh</button><button class="save-btn" onclick="triggerUpload()">🖼️ Chọn ảnh</button></div></div>`;
+  return`<div style="text-align:center;padding:16px 0 20px"><div style="font-size:46px;margin-bottom:10px">🥗</div><div style="font-size:13.5px;color:var(--text3);margin-bottom:16px;line-height:1.6">${t('ai_scan_init')}</div><div style="display:flex;gap:9px"><button class="save-btn" style="background:var(--surface2);color:var(--text2);box-shadow:none" onclick="triggerCamera()">📷 ${t('chup_anh')}</button><button class="save-btn" onclick="triggerUpload()">🖼️ ${t('tai_anh')}</button></div></div>`;
 }
 function triggerCamera(){const inp=document.getElementById('ai-file-inp');inp.setAttribute('capture','environment');inp.click()}
 function triggerUpload(){const inp=document.getElementById('ai-file-inp');inp.removeAttribute('capture');inp.click()}
@@ -853,27 +995,48 @@ async function handleAIFile(e){
 }
 async function analyzeFood(b64,mime,preview){
   const key=getApiKey();
-  if(!key){document.getElementById('ai-content').innerHTML=`<img src="${preview}" class="ai-preview"/><div class="ai-result">⚠️ Chưa có API key.\nVào Hồ sơ → nhập Claude API key để dùng tính năng này.</div><button class="save-btn" onclick="closeAI()">Đóng</button>`;return}
+  if(!key){document.getElementById('ai-content').innerHTML=`<img src="${preview}" class="ai-preview"/><div class="ai-result">${t('chua_co_apikey_scan')}</div><button class="save-btn" onclick="closeAI()">${t('dong')}</button>`;return}
+  const sysInstruction=LANG==='vi'
+    ?'Bạn là chuyên gia dinh dưỡng ước tính calo từ ảnh món ăn cho app YumLog. Quy tắc bắt buộc, áp dụng nhất quán cho mọi lần phân tích, tuyệt đối không tự do sáng tạo số liệu mới mỗi lần cho cùng một món: (1) Trước tiên xác định chính xác tên món ăn quen thuộc nhất khớp với ảnh (ví dụ: phở bò, cơm tấm, sinh tố bơ, bánh mì thịt...). (2) Với mỗi tên món đã xác định, luôn dùng MỘT giá trị calo trung bình cố định đã biết rộng rãi cho khẩu phần tiêu chuẩn phổ biến tại Việt Nam (không phải khẩu phần lớn nhất nhìn thấy trong ảnh) — coi như tra một bảng tham chiếu nội bộ cố định, không ước lượng lại từ đầu mỗi lần. (3) Làm tròn kcal theo bậc 50 gần nhất (ví dụ 372 -> 350, 430 -> 450). (4) Làm tròn protein/carb/chất béo theo gam nguyên. (5) Ghi chú dưới 15 từ về độ tin cậy ước tính.'
+    :'You are a nutrition expert estimating calories from food photos for the YumLog app. Mandatory rules, applied consistently every time, never freely inventing new numbers each time for the same dish: (1) First identify the most likely common dish name matching the image. (2) For each identified dish name, always use ONE fixed, widely known average calorie value for a typical standard serving (not the largest portion visible) — treat it as looking up a fixed internal reference table, not re-estimating from scratch each time. (3) Round kcal to the nearest 50 (e.g. 372 -> 350, 430 -> 450). (4) Round protein/carb/fat to whole grams. (5) Keep the note under 15 words about estimate confidence.';
+  const prompt=LANG==='vi'?'Phân tích món ăn trong ảnh này theo schema đã định.':'Analyze the food in this image according to the defined schema.';
+  const responseSchema={
+    type:'OBJECT',
+    properties:{
+      ten_mon:{type:'STRING'}, khau_phan:{type:'STRING'}, kcal:{type:'NUMBER'},
+      protein_g:{type:'NUMBER'}, carb_g:{type:'NUMBER'}, fat_g:{type:'NUMBER'}, ghi_chu:{type:'STRING'}
+    },
+    required:['ten_mon','khau_phan','kcal','protein_g','carb_g','fat_g','ghi_chu']
+  };
   try{
-    const res=await fetch('https://api.anthropic.com/v1/messages',{
-      method:'POST',headers:{'Content-Type':'application/json','x-api-key':key,'anthropic-version':'2023-06-01'},
-      body:JSON.stringify({model:'claude-opus-4-6',max_tokens:600,messages:[{role:'user',content:[
-        {type:'image',source:{type:'base64',media_type:mime,data:b64}},
-        {type:'text',text:`Phân tích ảnh món ăn. Trả lời JSON duy nhất, không thêm gì:\n{"ten_mon":"...","khau_phan":"...","kcal":0,"protein_g":0,"carb_g":0,"fat_g":0,"ghi_chu":"..."}`}
-      ]}]})
-    });
-    const data=await res.json();
-    const text=data.content?.[0]?.text||'';
+    const data=await fetchGeminiWithRetry(
+      {
+        system_instruction:{parts:[{text:sysInstruction}]},
+        contents:[{parts:[
+          {inline_data:{mime_type:mime,data:b64}},
+          {text:prompt}
+        ]}],
+        generationConfig:{temperature:0,topP:0.1,topK:1,seed:42,responseMimeType:'application/json',responseSchema}
+      },
+      key,
+      (n,total)=>{
+        const spinner=document.querySelector('#ai-content .spinner')?.parentElement;
+        if(spinner) spinner.innerHTML=`<div class="spinner"></div><div style="font-size:13px;color:var(--text3)">${LANG==='vi'?'Gemini đang quá tải, thử lại lần':'Gemini overloaded, retrying'} ${n}/${total}...</div>`;
+      }
+    );
+    if(data.error){document.getElementById('ai-content').innerHTML=`<img src="${preview}" class="ai-preview"/><div class="ai-result">⚠️ ${LANG==='vi'?'Lỗi từ Gemini':'Error from Gemini'}: ${data.error.message||JSON.stringify(data.error)}<br><br>${LANG==='vi'?'Gemini đang quá tải, vui lòng thử lại sau ít phút.':'Gemini is overloaded, please try again in a few minutes.'}</div><button class="save-btn" onclick="closeAI()">${t('dong')}</button>`;return}
+    const text=data.candidates?.[0]?.content?.parts?.[0]?.text||'';
     let parsed;try{parsed=JSON.parse(text.replace(/```json|```/g,'').trim())}catch{parsed=null}
     if(parsed){
+      parsed.kcal=Math.round(parsed.kcal/50)*50;
       document.getElementById('ai-content').innerHTML=`<img src="${preview}" class="ai-preview"/>
-        <div class="ai-result">🍽️ <b>${parsed.ten_mon}</b> (${parsed.khau_phan})\n\n🔥 Kcal: <b style="color:var(--gold);font-size:18px">${parsed.kcal} kcal</b>\n💪 Protein: ${parsed.protein_g}g  🍞 Carb: ${parsed.carb_g}g  🧈 Chất béo: ${parsed.fat_g}g\n\n📝 ${parsed.ghi_chu}</div>
-        <div class="field-lbl" style="margin-bottom:7px">Điều chỉnh kcal nếu cần</div>
+        <div class="ai-result">🍽️ <b>${parsed.ten_mon}</b> (${parsed.khau_phan})\n\n🔥 Kcal: <b style="color:var(--gold);font-size:18px">${parsed.kcal} kcal</b>\n💪 ${t('protein')}: ${parsed.protein_g}g  🍞 ${t('carb')}: ${parsed.carb_g}g  🧈 ${t('chatbeo')}: ${parsed.fat_g}g\n\n📝 ${parsed.ghi_chu}</div>
+        <div class="field-lbl" style="margin-bottom:7px">${t('dieu_chinh_kcal')}</div>
         <input class="inp inp-cal" id="ai-cal-adj" type="number" value="${parsed.kcal}" inputmode="numeric" style="margin-bottom:10px"/>
-        <button class="save-btn" onclick="saveFromAI('${parsed.ten_mon.replace(/'/g,"\\'")}')">Thêm vào nhật ký ✓</button>
-        <button class="save-btn" style="background:var(--surface2);color:var(--text2);box-shadow:none;margin-top:8px" onclick="closeAI()">Bỏ qua</button>`;
-    }else{document.getElementById('ai-content').innerHTML=`<img src="${preview}" class="ai-preview"/><div class="ai-result">Không nhận dạng được. Thử ảnh rõ hơn nhé!</div><button class="save-btn" onclick="closeAI()">Đóng</button>`}
-  }catch(err){document.getElementById('ai-content').innerHTML=`<div class="ai-result">Lỗi: ${err.message}</div><button class="save-btn" onclick="closeAI()">Đóng</button>`}
+        <button class="save-btn" onclick="saveFromAI('${parsed.ten_mon.replace(/'/g,"\\'")}')">${t('them_vao_nhatky')}</button>
+        <button class="save-btn" style="background:var(--surface2);color:var(--text2);box-shadow:none;margin-top:8px" onclick="closeAI()">${t('bo_qua')}</button>`;
+    }else{document.getElementById('ai-content').innerHTML=`<img src="${preview}" class="ai-preview"/><div class="ai-result">${t('khong_nhandang')}</div><button class="save-btn" onclick="closeAI()">${t('dong')}</button>`}
+  }catch(err){document.getElementById('ai-content').innerHTML=`<div class="ai-result">${LANG==='vi'?'Lỗi mạng':'Network error'} (${err.name}): ${err.message}<br><br>${LANG==='vi'?'Gợi ý: kiểm tra kết nối internet, hoặc thử tắt Private Relay/VPN nếu có.':'Tip: check your internet connection, or try disabling Private Relay/VPN if enabled.'}</div><button class="save-btn" onclick="closeAI()">${t('dong')}</button>`}
 }
 function saveFromAI(name){
   const cal=parseInt(document.getElementById('ai-cal-adj').value)||0;if(cal<=0)return;
@@ -881,56 +1044,309 @@ function saveFromAI(name){
   saveLogs(logs);closeAI();renderToday();
 }
 
-// CHART
 function setPeriod(p,btn){curPeriod=p;document.querySelectorAll('.period-btn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');renderChart()}
 function getChartData(days){
-  const labels=[],eaten=[],burned=[];const DN=['CN','T2','T3','T4','T5','T6','T7'];
+  const labels=[],eaten=[],burned=[];const DN=t('weekdays');
   for(let i=days-1;i>=0;i--){const d=new Date();d.setDate(d.getDate()-i);const key=dateKey(d);const logs=getLogs(key);const e=logs.filter(l=>l.type==='food').reduce((a,l)=>a+l.cal,0);const b=logs.filter(l=>l.type==='exercise').reduce((a,l)=>a+l.cal,0);labels.push(days<=7?DN[d.getDay()]:d.getDate()+'/'+(d.getMonth()+1));eaten.push(e);burned.push(b);}
   return{labels,eaten,burned};
 }
 function renderChart(){
   const days=curPeriod==='week'?7:30;const{labels,eaten,burned}=getChartData(days);const active=eaten.filter(v=>v>0).length||1;const totalE=eaten.reduce((a,b)=>a+b,0);const totalB=burned.reduce((a,b)=>a+b,0);const avgE=Math.round(totalE/active);
-  document.getElementById('chart-sum').innerHTML=`<div class="sum-card"><div class="sum-val">${fmt(avgE)}</div><div class="sum-lbl">TB nạp/ngày</div></div><div class="sum-card"><div class="sum-val">${fmt(Math.round(totalB/active))}</div><div class="sum-lbl">TB đốt/ngày</div></div><div class="sum-card"><div class="sum-val">${active}/${days}</div><div class="sum-lbl">Ngày ghi chép</div></div>`;
+  document.getElementById('chart-sum').innerHTML=`<div class="sum-card"><div class="sum-val">${fmt(avgE)}</div><div class="sum-lbl">${t('tb_nap')}</div></div><div class="sum-card"><div class="sum-val">${fmt(Math.round(totalB/active))}</div><div class="sum-lbl">${t('tb_dot')}</div></div><div class="sum-card"><div class="sum-val">${active}/${days}</div><div class="sum-lbl">${t('ngay_ghichep')}</div></div>`;
   const ctx=document.getElementById('barChart');ctx.parentElement.style.height=(days<=7?195:175)+'px';if(barChart)barChart.destroy();
-  barChart=new Chart(ctx,{type:'bar',data:{labels,datasets:[{label:'Nạp vào',data:eaten,backgroundColor:'rgba(201,168,76,0.75)',borderRadius:5,borderSkipped:false},{label:'Đốt cháy',data:burned,backgroundColor:'rgba(58,158,106,0.65)',borderRadius:5,borderSkipped:false}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{backgroundColor:'rgba(30,26,14,0.95)',titleColor:'#f5ecd5',bodyColor:'#a8956e',callbacks:{label:c=>c.dataset.label+': '+c.parsed.y.toLocaleString('vi-VN')+' kcal'}}},scales:{x:{grid:{color:'rgba(160,130,60,0.07)'},ticks:{color:'#b0996a',font:{size:10}}},y:{grid:{color:'rgba(160,130,60,0.07)'},ticks:{color:'#b0996a',font:{size:10},callback:v=>v>=1000?(v/1000).toFixed(1)+'k':v},min:0}}}});
+  barChart=new Chart(ctx,{type:'bar',data:{labels,datasets:[{label:t('nap_vao'),data:eaten,backgroundColor:'rgba(201,168,76,0.75)',borderRadius:5,borderSkipped:false},{label:t('dot_chay'),data:burned,backgroundColor:'rgba(58,158,106,0.65)',borderRadius:5,borderSkipped:false}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{backgroundColor:'rgba(30,26,14,0.95)',titleColor:'#f5ecd5',bodyColor:'#a8956e',callbacks:{label:c=>c.dataset.label+': '+c.parsed.y.toLocaleString('en-US')+' kcal'}}},scales:{x:{grid:{color:'rgba(160,130,60,0.07)'},ticks:{color:'#b0996a',font:{size:10}}},y:{grid:{color:'rgba(160,130,60,0.07)'},ticks:{color:'#b0996a',font:{size:10},callback:v=>v>=1000?(v/1000).toFixed(1)+'k':v},min:0}}}});
   const ctx2=document.getElementById('donutChart');ctx2.parentElement.style.height='170px';if(donutChart)donutChart.destroy();const avgP=Math.round(avgE*.30/4),avgC=Math.round(avgE*.43/4),avgF=Math.round(avgE*.27/9);
-  donutChart=new Chart(ctx2,{type:'doughnut',data:{labels:['Protein','Carb','Chất béo'],datasets:[{data:[avgP,avgC,avgF],backgroundColor:['rgba(58,158,106,0.8)','rgba(201,168,76,0.8)','rgba(192,120,64,0.8)'],borderWidth:0,hoverOffset:5}]},options:{responsive:true,maintainAspectRatio:false,cutout:'68%',plugins:{legend:{display:false},tooltip:{backgroundColor:'rgba(30,26,14,0.95)',titleColor:'#f5ecd5',bodyColor:'#a8956e',callbacks:{label:c=>c.label+': '+c.parsed+'g'}}}}});
+  donutChart=new Chart(ctx2,{type:'doughnut',data:{labels:[t('protein'),t('carb'),t('chatbeo')],datasets:[{data:[avgP,avgC,avgF],backgroundColor:['rgba(58,158,106,0.8)','rgba(201,168,76,0.8)','rgba(192,120,64,0.8)'],borderWidth:0,hoverOffset:5}]},options:{responsive:true,maintainAspectRatio:false,cutout:'68%',plugins:{legend:{display:false},tooltip:{backgroundColor:'rgba(30,26,14,0.95)',titleColor:'#f5ecd5',bodyColor:'#a8956e',callbacks:{label:c=>c.label+': '+c.parsed+'g'}}}}});
 }
 
-// HISTORY
 function renderHistory(){
-  const GOAL=getGoal();const el=document.getElementById('history-list');const DN=['Chủ nhật','Thứ hai','Thứ ba','Thứ tư','Thứ năm','Thứ sáu','Thứ bảy'];const items=[];
-  for(let i=0;i<30;i++){const d=new Date();d.setDate(d.getDate()-i);const key=dateKey(d);const val=localStorage.getItem(key);if(!val)continue;const logs=JSON.parse(val);if(!logs.length)continue;const eaten=logs.filter(l=>l.type==='food').reduce((a,l)=>a+l.cal,0);const burned=logs.filter(l=>l.type==='exercise').reduce((a,l)=>a+l.cal,0);const net=GOAL-eaten+burned;const ok=eaten<=GOAL+100;const lbl=i===0?'Hôm nay':i===1?'Hôm qua':DN[d.getDay()]+' '+d.getDate()+'/'+(d.getMonth()+1);const pct=Math.min(100,Math.round(eaten/GOAL*100));
-    items.push(`<div class="hist-day"><div class="hist-header"><div class="hist-date">${lbl}</div><div class="hist-badge" style="background:${ok?'var(--green-dim)':'var(--red-dim)'};color:${ok?'var(--green)':'var(--red)'}">${ok?'✓ Đạt':'✗ Vượt'}</div></div><div class="hist-stats"><div class="hist-stat"><div class="hist-stat-val">${fmt(eaten)}</div><div class="hist-stat-lbl">kcal nạp</div></div><div class="hist-stat"><div class="hist-stat-val">${fmt(burned)}</div><div class="hist-stat-lbl">kcal đốt</div></div><div class="hist-stat"><div class="hist-stat-val">${fmt(Math.max(0,net))}</div><div class="hist-stat-lbl">còn lại</div></div></div><div class="hist-prog"><div class="hist-prog-fill" style="width:${pct}%;background:${ok?'var(--gold)':'var(--red)'}"></div></div></div>`);
+  const GOAL=getGoal();const el=document.getElementById('history-list');const DN=t('weekdays_full');const items=[];
+  for(let i=0;i<30;i++){
+    const d=new Date();d.setDate(d.getDate()-i);const key=dateKey(d);const val=localStorage.getItem(key);
+    const logs=val?JSON.parse(val):[];
+    const lbl=i===0?t('today'):i===1?t('yesterday'):DN[d.getDay()]+' '+d.getDate()+'/'+(d.getMonth()+1);
+    if(!logs.length){
+      items.push(`<div class="hist-day" onclick="openEditDay('${key}','${lbl}')" style="cursor:pointer;opacity:.55"><div class="hist-header"><div class="hist-date">${lbl}</div><div class="hist-badge" style="background:var(--surface2);color:var(--text3)">${t('chua_co_lichsu')}</div></div><div style="font-size:12px;color:var(--text3);text-align:center;padding:6px 0">${t('bam_them_lichsu')}</div></div>`);
+      continue;
+    }
+    const eaten=logs.filter(l=>l.type==='food').reduce((a,l)=>a+l.cal,0);const burned=logs.filter(l=>l.type==='exercise').reduce((a,l)=>a+l.cal,0);const net=GOAL-eaten+burned;const ok=eaten<=GOAL+100;const pct=Math.min(100,Math.round(eaten/GOAL*100));
+    items.push(`<div class="hist-day" onclick="openEditDay('${key}','${lbl}')" style="cursor:pointer"><div class="hist-header"><div class="hist-date">${lbl}</div><div class="hist-badge" style="background:${ok?'var(--green-dim)':'var(--red-dim)'};color:${ok?'var(--green)':'var(--red)'}">${ok?t('dat'):t('vuot')}</div></div><div class="hist-stats"><div class="hist-stat"><div class="hist-stat-val">${fmt(eaten)}</div><div class="hist-stat-lbl">${t('kcal_nap')}</div></div><div class="hist-stat"><div class="hist-stat-val">${fmt(burned)}</div><div class="hist-stat-lbl">${t('kcal_dot')}</div></div><div class="hist-stat"><div class="hist-stat-val">${fmt(Math.max(0,net))}</div><div class="hist-stat-lbl">${t('con_lai_short')}</div></div></div><div class="hist-prog"><div class="hist-prog-fill" style="width:${pct}%;background:${ok?'var(--gold)':'var(--red)'}"></div></div></div>`);
   }
-  el.innerHTML=items.length?items.join(''):`<div class="empty-state"><div style="font-size:44px;margin-bottom:10px">📅</div><div class="empty-text">Chưa có lịch sử<br>Bắt đầu ghi chép hôm nay!</div></div>`;
+  el.innerHTML=items.join('');
 }
 
-// ANALYSIS (AI chat)
-function renderQuickAI(){
-  const w=document.getElementById('quick-ai-btns');if(w.innerHTML)return;
-  AI_QUICK.forEach(q=>{const b=document.createElement('button');b.className='ai-quick-btn';b.textContent=q;b.onclick=()=>{document.getElementById('ai-question').value=q;sendAnalysis()};w.appendChild(b)});
+// ===== TRENDS TAB =====
+function get30DayLogs(){
+  const days=[];
+  for(let i=0;i<30;i++){
+    const d=new Date();d.setDate(d.getDate()-i);
+    const key=dateKey(d);
+    const val=localStorage.getItem(key);
+    if(val){
+      const logs=JSON.parse(val);
+      if(logs.length){
+        const eaten=logs.filter(l=>l.type==='food').reduce((a,l)=>a+l.cal,0);
+        const burned=logs.filter(l=>l.type==='exercise').reduce((a,l)=>a+l.cal,0);
+        days.push({date:key,eaten,burned,logs});
+      }
+    }
+  }
+  return days;
 }
+function renderTrends(){
+  const GOAL=getGoal();
+  const days=get30DayLogs();
+
+  if(!days.length){
+    document.getElementById('trend-goal-label').textContent=LANG==='vi'?'Chưa có dữ liệu để tính':'No data to calculate yet';
+    document.getElementById('balance-badge').textContent='–';
+    document.getElementById('balance-badge').className='balance-badge';
+    document.getElementById('balance-sign').textContent='';
+    document.getElementById('balance-val').textContent='0';
+    document.getElementById('balance-kg-text').textContent=LANG==='vi'?'chưa thể ước tính (cần thêm dữ liệu)':'cannot estimate yet (need more data)';
+    document.getElementById('trend-stability').textContent='–';
+    document.getElementById('trend-stability-label').textContent='–';
+    return;
+  }
+
+  // 1. Goal achievement rate
+  const onTrack=days.filter(d=>d.eaten<=GOAL+100).length;
+  const pctGoal=Math.round(onTrack/days.length*100);
+  document.getElementById('trend-goal-bar').style.width=pctGoal+'%';
+  document.getElementById('trend-goal-label').textContent=pctGoal+t('sn_trongmt')+' ('+onTrack+'/'+days.length+' '+t('sn')+')';
+
+  // 2. Metabolic balance forecast
+  const avgEaten=days.reduce((a,d)=>a+d.eaten,0)/days.length;
+  const avgBurned=days.reduce((a,d)=>a+d.burned,0)/days.length;
+  const prof=getProfile();
+  const tdee=prof.tdee||GOAL;
+  const dailyBalance=(tdee-avgEaten)+avgBurned; // >0 deficit, <0 surplus
+  const kgPer30Days=(dailyBalance*30)/7700;
+  const badge=document.getElementById('balance-badge');
+  const signEl=document.getElementById('balance-sign');
+  const valEl=document.getElementById('balance-val');
+  const kgText=document.getElementById('balance-kg-text');
+  if(Math.abs(dailyBalance)<50){
+    badge.textContent=t('can_bang');badge.className='balance-badge balanced';
+    signEl.textContent='';valEl.textContent=fmt(Math.abs(dailyBalance));
+    kgText.textContent=LANG==='vi'?'~0 kg (khá ổn định)':'~0 kg (fairly stable)';
+  }else if(dailyBalance>0){
+    badge.textContent=t('hut_calo');badge.className='balance-badge deficit';
+    signEl.textContent='−';valEl.textContent=fmt(dailyBalance);
+    kgText.textContent='-'+kgPer30Days.toFixed(1)+' kg';
+  }else{
+    badge.textContent=t('du_calo');badge.className='balance-badge surplus';
+    signEl.textContent='+';valEl.textContent=fmt(Math.abs(dailyBalance));
+    kgText.textContent='+'+Math.abs(kgPer30Days).toFixed(1)+' kg';
+  }
+
+  // 3. Stability (standard deviation of eaten calories)
+  const mean=avgEaten;
+  const variance=days.reduce((a,d)=>a+Math.pow(d.eaten-mean,2),0)/days.length;
+  const sd=Math.sqrt(variance);
+  document.getElementById('trend-stability').textContent=fmt(sd);
+  let stabLabel='',stabColor='';
+  if(sd<150){stabLabel=t('rat_ondinh');stabColor='var(--green)'}
+  else if(sd<350){stabLabel=t('kha_ondinh');stabColor='var(--gold)'}
+  else{stabLabel=t('daodong_nhieu');stabColor='var(--red)'}
+  const stEl=document.getElementById('trend-stability-label');
+  stEl.textContent=stabLabel;
+  stEl.style.color=stabColor;
+}
+
+async function runNutritionDiagnosis(){
+  const key=getApiKey();
+  const box=document.getElementById('trend-ai-box');
+  if(!key){
+    box.innerHTML=`<div class="diag-error">${t('chua_apikey_diag')}</div><button class="apply-btn diag-cta-btn" onclick="runNutritionDiagnosis()" style="margin-top:12px">${t('thu_lai')}</button>`;
+    return;
+  }
+  box.innerHTML=`<div class="diag-loading"><div class="spinner"></div><div>${t('ai_dangphantich30')}</div></div>`;
+  const days=get30DayLogs();
+  if(days.length<2){
+    box.innerHTML=`<div class="diag-error">${t('can_thedu_lieu')}</div><button class="apply-btn diag-cta-btn" onclick="runNutritionDiagnosis()" style="margin-top:12px">${t('phantich_lai')}</button>`;
+    return;
+  }
+  const prof=getProfile();
+  const GOAL=getGoal();
+  const avgEaten=Math.round(days.reduce((a,d)=>a+d.eaten,0)/days.length);
+  const avgBurned=Math.round(days.reduce((a,d)=>a+d.burned,0)/days.length);
+  const avgProtein=Math.round(avgEaten*0.30/4);
+  const allFoodNames=days.flatMap(d=>d.logs.filter(l=>l.type==='food').map(l=>l.name)).slice(0,60);
+  const isVi=LANG==='vi';
+  const profileInfo=isVi
+    ?`Người dùng: ${prof.name||'Chưa rõ'}, ${prof.sex==='male'?'Nam':'Nữ'}, ${prof.age||'?'} tuổi, ${prof.height||'?'}cm, ${prof.weight||'?'}kg. TDEE: ${prof.tdee||'chưa tính'} kcal. Mục tiêu calo/ngày: ${GOAL} kcal.`
+    :`User: ${prof.name||'Unknown'}, ${prof.sex==='male'?'Male':'Female'}, ${prof.age||'?'} years old, ${prof.height||'?'}cm, ${prof.weight||'?'}kg. TDEE: ${prof.tdee||'not calculated'} kcal. Daily calorie goal: ${GOAL} kcal.`;
+  const dataInfo=isVi
+    ?`Trong ${days.length} ngày gần nhất: trung bình nạp ${avgEaten} kcal/ngày (ước tính protein ~${avgProtein}g/ngày), trung bình đốt qua vận động ${avgBurned} kcal/ngày. Danh sách món ăn đã ghi nhận: ${allFoodNames.join(', ')||'không có'}.`
+    :`Over the last ${days.length} days: average intake ${avgEaten} kcal/day (estimated protein ~${avgProtein}g/day), average exercise burn ${avgBurned} kcal/day. Logged foods: ${allFoodNames.join(', ')||'none'}.`;
+  const sysInstruction=isVi
+    ?'Bạn là chuyên gia dinh dưỡng AI cho app YumLog, đưa ra chẩn đoán nhất quán dựa trên số liệu được cung cấp. Quy tắc bắt buộc: (1) Luôn đánh giá tổng quan mức calo so với TDEE/mục tiêu trước tiên. (2) Cảnh báo dư/thiếu protein hoặc nhóm chất cụ thể dựa trên dữ liệu món ăn, nếu dữ liệu hạn chế thì nói rõ là ước tính, không suy diễn quá mức. (3) Luôn có ít nhất 1 điểm tích cực nếu có cơ sở (ví dụ bám sát mục tiêu, độ ổn định tốt). (4) Type "danger" chỉ dùng cho cảnh báo nghiêm trọng thực sự (lệch >500 kcal/ngày hoặc thiếu protein nặng), "warning" cho mức nhẹ hơn. (5) Trả về đúng 2-4 mục, không nhiều hơn.'
+    :'You are an AI nutrition expert for the YumLog app, giving consistent diagnoses based on the data provided. Mandatory rules: (1) Always assess overall calorie level vs TDEE/goal first. (2) Warn about specific protein/nutrient deficiency or excess based on logged food data; if data is limited, state it is an estimate and avoid overreaching conclusions. (3) Always include at least 1 positive point if justified (e.g. good goal adherence, good stability). (4) Use type "danger" only for genuinely serious issues (>500 kcal/day deviation or severe protein deficiency), "warning" for milder issues. (5) Return exactly 2-4 items, no more.';
+  const prompt=`${profileInfo}\n${dataInfo}`;
+  const responseSchema={
+    type:'ARRAY',
+    items:{
+      type:'OBJECT',
+      properties:{
+        type:{type:'STRING',enum:['warning','success','danger','info']},
+        icon:{type:'STRING'}, title:{type:'STRING'}, description:{type:'STRING'}, foods:{type:'STRING'}
+      },
+      required:['type','icon','title','description']
+    }
+  };
+  try{
+    const data=await fetchGeminiWithRetry(
+      {
+        system_instruction:{parts:[{text:sysInstruction}]},
+        contents:[{parts:[{text:prompt}]}],
+        generationConfig:{temperature:0.2,responseMimeType:'application/json',responseSchema}
+      },
+      key,
+      (n,total)=>{
+        box.innerHTML=`<div class="diag-loading"><div class="spinner"></div><div>${isVi?'Đang quá tải, thử lại lần':'Overloaded, retrying'} ${n}/${total}...</div></div>`;
+      }
+    );
+    if(data.error){
+      box.innerHTML=`<div class="diag-error">⚠️ ${isVi?'Lỗi từ Gemini':'Error from Gemini'}: ${data.error.message||JSON.stringify(data.error)}</div><button class="apply-btn diag-cta-btn" onclick="runNutritionDiagnosis()" style="margin-top:12px">${t('thu_lai')}</button>`;
+      return;
+    }
+    const text=data.candidates?.[0]?.content?.parts?.[0]?.text||'';
+    let items;
+    try{ items=JSON.parse(text.replace(/```json|```/g,'').trim()); }catch{ items=null; }
+    if(items&&Array.isArray(items)&&items.length){
+      const html=items.map(it=>{
+        const type=['warning','success','danger','info'].includes(it.type)?it.type:'info';
+        const foodsHtml=it.foods?`<br><br>💡 <span class="diag-item-foods">${it.foods}</span>`:'';
+        return `<div class="diag-item ${type}">
+          <div class="diag-item-head"><span class="diag-item-icon">${it.icon||'•'}</span><span class="diag-item-title">${it.title||''}</span></div>
+          <div class="diag-item-desc">${it.description||''}${foodsHtml}</div>
+        </div>`;
+      }).join('');
+      box.innerHTML=html+`<button class="apply-btn diag-cta-btn" onclick="runNutritionDiagnosis()" style="margin-top:4px">${t('phantich_lai')}</button>`;
+    }else{
+      box.innerHTML=`<div class="diag-error">${t('khong_doc_duoc')}</div><button class="apply-btn diag-cta-btn" onclick="runNutritionDiagnosis()" style="margin-top:12px">${t('phantich_lai')}</button>`;
+    }
+  }catch(err){
+    box.innerHTML=`<div class="diag-error">${isVi?'Lỗi kết nối':'Connection error'} (${err.name}): ${err.message}</div><button class="apply-btn diag-cta-btn" onclick="runNutritionDiagnosis()" style="margin-top:12px">${t('thu_lai')}</button>`;
+  }
+}
+
+// EDIT PAST DAY
+let editDayKey=null;
+function openEditDay(key,label){
+  editDayKey=key;
+  document.getElementById('edit-day-label').textContent=label;
+  renderEditDayLogs();
+  document.getElementById('edit-overlay').classList.add('show');
+  document.getElementById('edit-sheet').classList.add('show');
+}
+function closeEditDay(){
+  document.getElementById('edit-overlay').classList.remove('show');
+  document.getElementById('edit-sheet').classList.remove('show');
+  editDayKey=null;
+  renderHistory();
+}
+function renderEditDayLogs(){
+  const logs=getLogs(editDayKey);
+  const eaten=logs.filter(l=>l.type==='food').reduce((a,l)=>a+l.cal,0);
+  const burned=logs.filter(l=>l.type==='exercise').reduce((a,l)=>a+l.cal,0);
+  document.getElementById('edit-day-summary').textContent=t('nap_vao')+': '+fmt(eaten)+' kcal · '+t('dot_chay')+': '+fmt(burned)+' kcal';
+  const list=document.getElementById('edit-day-list');
+  list.innerHTML='';
+  if(!logs.length){
+    list.innerHTML=`<div class="empty-state" style="padding:24px 0"><div class="empty-text">${LANG==='vi'?'Chưa có ghi chép cho ngày này':'No entries for this day yet'}</div></div>`;
+    return;
+  }
+  [...logs].reverse().forEach(l=>{
+    const div=document.createElement('div');div.className='log-item';
+    const icon=l.type==='food'
+      ?'<svg viewBox="0 0 24 24" style="stroke:var(--green);fill:none;stroke-width:1.8"><path d="M18 8h1a4 4 0 010 8h-1"/><path d="M2 8h16v9a4 4 0 01-4 4H6a4 4 0 01-4-4V8z"/></svg>'
+      :'<svg viewBox="0 0 24 24" style="stroke:var(--gold);fill:none;stroke-width:1.8"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>';
+    div.innerHTML=`<div class="log-icon ${l.type==='food'?'li-food':'li-ex'}">${icon}</div>
+      <div class="log-body"><div class="log-name">${l.name}</div><div class="log-time">${l.time||''}</div></div>
+      <div class="log-cal ${l.type==='exercise'?'log-cal-ex':''}">${l.type==='exercise'?'−':''}${fmt(l.cal)}</div>
+      <button class="del-btn" onclick="delEditDayItem(${l.id})">×</button>`;
+    list.appendChild(div);
+  });
+}
+function delEditDayItem(id){
+  const logs=getLogs(editDayKey).filter(l=>l.id!==id);
+  localStorage.setItem(editDayKey,JSON.stringify(logs));
+  renderEditDayLogs();
+}
+function addEditDayItem(){
+  const name=document.getElementById('edit-inp-name').value.trim();
+  const cal=parseInt(document.getElementById('edit-inp-cal').value)||0;
+  const type=document.getElementById('edit-type-food').classList.contains('sel-food')?'food':'exercise';
+  if(!name||cal<=0){alert('Nhập tên và calo hợp lệ');return}
+  const logs=getLogs(editDayKey);
+  logs.push({id:Date.now(),name,cal,type,time:'--:--'});
+  localStorage.setItem(editDayKey,JSON.stringify(logs));
+  document.getElementById('edit-inp-name').value='';
+  document.getElementById('edit-inp-cal').value='';
+  renderEditDayLogs();
+}
+function selEditType(typ){
+  document.getElementById('edit-type-food').className='type-card'+(typ==='food'?' sel-food':'');
+  document.getElementById('edit-type-ex').className='type-card'+(typ==='exercise'?' sel-ex':'');
+}
+
+
+function renderQuickAI(){
+  const w=document.getElementById('quick-ai-btns');w.innerHTML='';
+  AI_QUICK[LANG].forEach(q=>{const b=document.createElement('button');b.className='ai-quick-btn';b.textContent=q;b.onclick=()=>{document.getElementById('ai-question').value=q;sendAnalysis()};w.appendChild(b)});
+}
+let aiSending=false;
 async function sendAnalysis(){
-  const key=getApiKey();const q=document.getElementById('ai-question').value.trim();if(!q)return;
-  document.getElementById('ai-question').value='';
+  if(aiSending)return;
+  const qInp=document.getElementById('ai-question');
+  const q=qInp.value.trim();if(!q)return;
+  aiSending=true;
+  const key=getApiKey();
+  qInp.value='';
+  qInp.disabled=true;
   const chat=document.getElementById('ai-chat');
   const userBubble=document.createElement('div');userBubble.className='ai-msg user';userBubble.innerHTML=`<div class="ai-bubble ai-bubble-user">${q}</div>`;
   chat.appendChild(userBubble);
   const thinkingEl=document.createElement('div');thinkingEl.className='ai-msg';thinkingEl.innerHTML=`<div class="ai-avatar">🤖</div><div class="ai-thinking"><div class="ai-dot"></div><div class="ai-dot"></div><div class="ai-dot"></div></div>`;
   chat.appendChild(thinkingEl);chat.scrollTop=chat.scrollHeight;
-  if(!key){thinkingEl.querySelector('.ai-thinking').outerHTML=`<div class="ai-bubble ai-bubble-bot">⚠️ Chưa có API key. Vào Hồ sơ → nhập Claude API key.</div>`;return}
+  if(!key){thinkingEl.innerHTML=`<div class="ai-avatar">🤖</div><div class="ai-bubble ai-bubble-bot">${t('chua_apikey_chat')}</div>`;aiSending=false;qInp.disabled=false;return}
+  const isVi=LANG==='vi';
   const p=getProfile();const GOAL=getGoal();const logs=getLogs();const eaten=logs.filter(l=>l.type==='food').reduce((a,l)=>a+l.cal,0);const burned=logs.filter(l=>l.type==='exercise').reduce((a,l)=>a+l.cal,0);
-  const context=`Người dùng: ${p.name||'Chưa rõ'}, ${p.sex==='male'?'Nam':'Nữ'}, ${p.age||28} tuổi, ${p.height||175}cm, ${p.weight||82}kg. Mục tiêu: ${GOAL} kcal/ngày. Hôm nay đã nạp: ${eaten} kcal, đã đốt: ${burned} kcal.`;
+  const context=isVi
+    ?`Người dùng: ${p.name||'Chưa rõ'}, ${p.sex==='male'?'Nam':'Nữ'}, ${p.age||28} tuổi, ${p.height||175}cm, ${p.weight||82}kg. Mục tiêu: ${GOAL} kcal/ngày. Hôm nay đã nạp: ${eaten} kcal, đã đốt: ${burned} kcal.`
+    :`User: ${p.name||'Unknown'}, ${p.sex==='male'?'Male':'Female'}, ${p.age||28} years old, ${p.height||175}cm, ${p.weight||82}kg. Goal: ${GOAL} kcal/day. Today intake so far: ${eaten} kcal, burned: ${burned} kcal.`;
+  const fullPrompt=isVi
+    ?`${context}\n\nCâu hỏi: ${q}`
+    :`${context}\n\nQuestion: ${q}`;
+  const sysInstruction=isVi
+    ?'Bạn là trợ lý dinh dưỡng thông minh cho app YumLog. Luôn trả lời ngắn gọn (dưới 80 từ trừ khi được yêu cầu chi tiết), thực tế, dựa trên số liệu calo phổ biến đã biết rộng rãi, không tự sáng tạo số liệu mới mỗi lần cho cùng một món ăn quen thuộc. Trả lời bằng tiếng Việt.'
+    :'You are a smart nutrition assistant for the YumLog app. Always answer concisely (under 80 words unless detail is requested), practically, based on widely known calorie data, without inventing new numbers each time for the same common food. Answer in English.';
   try{
-    const res=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:{'Content-Type':'application/json','x-api-key':key,'anthropic-version':'2023-06-01'},body:JSON.stringify({model:'claude-opus-4-6',max_tokens:500,messages:[{role:'user',content:`Bạn là trợ lý dinh dưỡng thông minh cho app YumLog. Trả lời ngắn gọn bằng tiếng Việt, thực tế và hữu ích.\n${context}\n\nCâu hỏi: ${q}`}]})});
-    const data=await res.json();const answer=data.content?.[0]?.text||'Xin lỗi, có lỗi xảy ra.';
+    let answer;
+    const data=await fetchGeminiWithRetry(
+      {
+        system_instruction:{parts:[{text:sysInstruction}]},
+        contents:[{parts:[{text:fullPrompt}]}],
+        generationConfig:{temperature:0.3}
+      },
+      key,
+      (n,total)=>{
+        thinkingEl.innerHTML=`<div class="ai-avatar">🤖</div><div class="ai-thinking"><div class="ai-dot"></div><div class="ai-dot"></div><div class="ai-dot"></div></div>`;
+        const thinkBox=thinkingEl.querySelector('.ai-thinking');
+        if(thinkBox) thinkBox.insertAdjacentHTML('afterend',`<div style="font-size:11px;color:var(--text3);margin-top:4px">${isVi?'Đang quá tải, thử lại':'Overloaded, retrying'} ${n}/${total}...</div>`);
+      }
+    );
+    if(data.candidates?.[0]?.content?.parts?.[0]?.text){ answer=data.candidates[0].content.parts[0].text; }
+    else if(data.error){ answer='⚠️ '+(isVi?'Lỗi từ Gemini':'Error from Gemini')+': '+(data.error.message||JSON.stringify(data.error))+(isVi?' (đã thử lại nhiều lần, vui lòng thử lại sau ít phút)':' (retried multiple times, please try again in a few minutes)'); }
+    else { answer='⚠️ '+(isVi?'Phản hồi lạ':'Unexpected response')+': '+JSON.stringify(data).slice(0,300); }
     thinkingEl.innerHTML=`<div class="ai-avatar">🤖</div><div class="ai-bubble ai-bubble-bot">${answer}</div>`;
-  }catch(err){thinkingEl.innerHTML=`<div class="ai-avatar">🤖</div><div class="ai-bubble ai-bubble-bot">Lỗi kết nối: ${err.message}</div>`}
+  }catch(err){thinkingEl.innerHTML=`<div class="ai-avatar">🤖</div><div class="ai-bubble ai-bubble-bot">${isVi?'Lỗi kết nối':'Connection error'} (${err.name}): ${err.message}</div>`}
+  finally{ aiSending=false; qInp.disabled=false; }
   chat.scrollTop=chat.scrollHeight;
 }
 
-// PROFILE
 function setSex(s){curSex=s;document.getElementById('seg-male').className='seg-btn'+(s==='male'?' active':'');document.getElementById('seg-female').className='seg-btn'+(s==='female'?' active':'')}
 function loadProfile(){
   const p=getProfile();
@@ -940,14 +1356,14 @@ function loadProfile(){
   if(p.weight)document.getElementById('p-weight').value=p.weight;
   if(p.activity)document.getElementById('p-activity').value=p.activity;
   if(p.sex){curSex=p.sex;setSex(p.sex)}
-  const k=getApiKey();if(k){showApiKeyConnected();};
-  const gc=localStorage.getItem('yl_gclient');if(gc){showGClientConnected();};
+  const k=getApiKey();if(k){showApiKeyConnected()}
   if(p.tdee)showTDEE(p.tdee,p.weight,p.height,p.goalDelta||selectedGoal);
   if(p.name){
-    document.getElementById('prof-name-text').textContent=gUser?.name||p.name;
-    document.getElementById('prof-sub-text').textContent=gUser?.email||('TDEE: '+fmt(p.tdee||0)+' kcal');
-    const init=(gUser?.name||p.name).split(' ').map(w=>w[0]).join('').slice(0,2).toUpperCase();
-    if(!gUser){document.getElementById('prof-ava').textContent=init;document.getElementById('user-avatar').textContent=init}
+    document.getElementById('prof-name-text').textContent=p.name;
+    document.getElementById('prof-sub-text').textContent='TDEE: '+fmt(p.tdee||0)+' kcal';
+    const init=p.name.split(' ').map(w=>w[0]).join('').slice(0,2).toUpperCase();
+    document.getElementById('prof-ava').textContent=init;
+    document.getElementById('user-avatar').textContent=init;
   }
 }
 function calcTDEE(){
@@ -960,31 +1376,34 @@ function calcTDEE(){
   const tdee=Math.round(bmr*activity);
   const profile={name,sex:curSex,age,height,weight,activity,tdee,bmr:Math.round(bmr),goalDelta:selectedGoal};
   saveProfile(profile);showTDEE(tdee,weight,height,selectedGoal);
-  if(name){const init=name.split(' ').map(w=>w[0]).join('').slice(0,2).toUpperCase();if(!gUser){document.getElementById('user-avatar').textContent=init;document.getElementById('prof-ava').textContent=init}document.getElementById('prof-name-text').textContent=gUser?.name||name;document.getElementById('prof-sub-text').textContent=gUser?.email||'TDEE: '+fmt(tdee)+' kcal'}
+  if(name){const init=name.split(' ').map(w=>w[0]).join('').slice(0,2).toUpperCase();document.getElementById('user-avatar').textContent=init;document.getElementById('prof-ava').textContent=init;document.getElementById('prof-name-text').textContent=name;document.getElementById('prof-sub-text').textContent='TDEE: '+fmt(tdee)+' kcal'}
   refreshGreeting();
 }
 function showTDEE(tdee,weight,height,goalDelta){
-  const bmi=(weight/((height/100)**2)).toFixed(1);const bmiS=bmi<18.5?'Thiếu cân':bmi<25?'Bình thường':bmi<30?'Thừa cân':'Béo phì';
+  const bmi=(weight/((height/100)**2)).toFixed(1);const bmiS=bmi<18.5?t('thieucan'):bmi<25?t('binhthuong'):bmi<30?t('thuacan'):t('beophi');
   document.getElementById('tdee-val').textContent=fmt(tdee);document.getElementById('tdee-bmi').textContent=bmi;document.getElementById('tdee-status').textContent=bmiS;document.getElementById('tdee-p').textContent=Math.round(weight*1.8)+'g';document.getElementById('tdee-bmr').textContent=fmt(Math.round(tdee/1.375));document.getElementById('tdee-result').style.display='block';localStorage.setItem('yl_p_target',Math.round(weight*1.8));
-  const goals=[{lbl:'Giảm nhẹ',sub:'~0.3 kg/tuần',delta:-250,icon:'🌱'},{lbl:'Giảm vừa',sub:'~0.5 kg/tuần',delta:-500,icon:'🔥'},{lbl:'Giảm nhanh',sub:'~1 kg/tuần',delta:-750,icon:'⚡'},{lbl:'Duy trì',sub:'Giữ cân hiện tại',delta:0,icon:'⚖️'},{lbl:'Tăng cơ',sub:'Tăng khối lượng',delta:300,icon:'💪'}];
-  const go=document.getElementById('goal-opts');go.innerHTML=goals.map(g=>{const target=tdee+g.delta;return`<div class="goal-opt${g.delta===goalDelta?' sel':''}" onclick="selectGoal(${g.delta},${tdee},this)"><div class="goal-radio"><div class="goal-dot"></div></div><div class="goal-text"><div class="goal-title">${g.icon} ${g.lbl}</div><div class="goal-sub">${g.sub} · Nạp ~${fmt(target)} kcal/ngày</div></div><div class="goal-kcal">${fmt(target)}</div></div>`}).join('');
+  const goals=[{lbl:t('giamnhe'),sub:t('sub_giamnhe'),delta:-250,icon:'🌱'},{lbl:t('giamvua'),sub:t('sub_giamvua'),delta:-500,icon:'🔥'},{lbl:t('giamnhanh'),sub:t('sub_giamnhanh'),delta:-750,icon:'⚡'},{lbl:t('duytri'),sub:t('sub_duytri'),delta:0,icon:'⚖️'},{lbl:t('tangco'),sub:t('sub_tangco'),delta:300,icon:'💪'}];
+  const go=document.getElementById('goal-opts');go.innerHTML=goals.map(g=>{const target=tdee+g.delta;return`<div class="goal-opt${g.delta===goalDelta?' sel':''}" onclick="selectGoal(${g.delta},${tdee},this)"><div class="goal-radio"><div class="goal-dot"></div></div><div class="goal-text"><div class="goal-title">${g.icon} ${g.lbl}</div><div class="goal-sub">${g.sub} · ${t('nap_kcalngay')}${fmt(target)} ${t('kcalngay')}</div></div><div class="goal-kcal">${fmt(target)}</div></div>`}).join('');
   document.getElementById('goal-card').style.display='block';
 }
 function selectGoal(delta,tdee,el){
   selectedGoal=delta;document.querySelectorAll('.goal-opt').forEach(e=>e.classList.remove('sel'));el.classList.add('sel');
   const goal=tdee+delta;localStorage.setItem('yl_goal',goal);localStorage.setItem('yl_c_target',Math.round(goal*.43/4));localStorage.setItem('yl_f_target',Math.round(goal*.27/9));
   const p=getProfile();p.goalDelta=delta;saveProfile(p);renderToday();
-  alert('✓ Mục tiêu: '+fmt(goal)+' kcal/ngày');
+  alert('✓ '+t('muc_tieu')+': '+fmt(goal)+' '+t('kcalngay'));
 }
+function getProvider(){ return 'gemini'; }
 function autoSaveApiKey(val){
-  if(val&&val.startsWith('sk-ant')){localStorage.setItem('yl_apikey',val);showApiKeyConnected();}
+  if(val&&val.trim().length>10){localStorage.setItem('yl_apikey_gemini',val.trim());showApiKeyConnected();}
 }
 function saveApiKey(){
   const k=document.getElementById('api-key-inp').value.trim();
-  if(!k.startsWith('sk-ant')){alert('API key không đúng (bắt đầu bằng sk-ant...)');return}
-  localStorage.setItem('yl_apikey',k);showApiKeyConnected();
+  if(k.length<10){alert('API key có vẻ chưa đúng, kiểm tra lại nhé!');return}
+  localStorage.setItem('yl_apikey_gemini',k);
+  showApiKeyConnected();
 }
 function showApiKeyConnected(){
+  document.getElementById('api-key-status-text').textContent='✓ Đã kết nối Gemini AI';
   document.getElementById('api-key-status').style.display='flex';
   document.getElementById('api-key-form').style.display='none';
 }
@@ -993,79 +1412,33 @@ function resetApiKey(){
   document.getElementById('api-key-form').style.display='block';
   document.getElementById('api-key-inp').value='';
 }
-function autoSaveGClient(val){
-  if(val&&val.includes('apps.googleusercontent.com')){localStorage.setItem('yl_gclient',val);showGClientConnected();loadGoogleScript(val);}
-}
-function saveGClient(){
-  const id=document.getElementById('gclient-inp').value.trim();
-  if(!id){alert('Nhập Client ID');return}
-  localStorage.setItem('yl_gclient',id);loadGoogleScript(id);showGClientConnected();
-}
-function showGClientConnected(){
-  document.getElementById('gclient-status').style.display='flex';
-  document.getElementById('gclient-form').style.display='none';
-}
-function resetGClient(){
-  document.getElementById('gclient-status').style.display='none';
-  document.getElementById('gclient-form').style.display='block';
-  document.getElementById('gclient-inp').value='';
-}
-function backupSettings(){
-  const settings={
-    yl_apikey: localStorage.getItem('yl_apikey')||'',
-    yl_gclient: localStorage.getItem('yl_gclient')||'',
-    yl_goal: localStorage.getItem('yl_goal')||'',
-    yl_profile: localStorage.getItem('yl_profile')||'',
-    yl_p_target: localStorage.getItem('yl_p_target')||'',
-    yl_c_target: localStorage.getItem('yl_c_target')||'',
-    yl_f_target: localStorage.getItem('yl_f_target')||'',
-    exported_at: new Date().toISOString()
-  };
-  const blob=new Blob([JSON.stringify(settings,null,2)],{type:'application/json'});
-  const a=document.createElement('a');
-  a.href=URL.createObjectURL(blob);
-  a.download='yumlog-settings-'+new Date().toISOString().slice(0,10)+'.json';
-  a.click();
-}
-
-function restoreSettings(e){
-  const file=e.target.files[0];if(!file)return;
-  const reader=new FileReader();
-  reader.onload=ev=>{
-    try{
-      const s=JSON.parse(ev.target.result);
-      const keys=['yl_apikey','yl_gclient','yl_goal','yl_profile','yl_p_target','yl_c_target','yl_f_target'];
-      let restored=0;
-      keys.forEach(k=>{if(s[k]){localStorage.setItem(k,s[k]);restored++;}});
-      const msg=document.getElementById('restore-msg');
-      msg.style.display='block';
-      msg.textContent='✓ Đã khôi phục '+restored+' cài đặt! Vui lòng tải lại trang.';
-      setTimeout(()=>location.reload(),1500);
-    }catch(err){
-      alert('File không hợp lệ!');
-    }
-  };
-  reader.readAsText(file);
-  e.target.value='';
-}
 
 function exportJSON(){
-  const keys=Object.keys(localStorage).filter(k=>k.startsWith('yl_'));const data={};keys.forEach(k=>data[k]=localStorage.getItem(k));const blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='yumlog-data-'+new Date().toISOString().slice(0,10)+'.json';a.click();
+  const keys=Object.keys(localStorage).filter(k=>k.startsWith('yl_'));const data={};keys.forEach(k=>data[k]=localStorage.getItem(k));
+  const blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'});
+  const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='yumlog-data-'+new Date().toISOString().slice(0,10)+'.json';a.click();
 }
 function exportCSV(){
-  const rows=[['Ngày','Tên','Loại','Calo','Giờ']];const keys=Object.keys(localStorage).filter(k=>k.startsWith('yl_2')).sort().reverse();
-  keys.forEach(k=>{const logs=getLogs(k);const date=k.replace('yl_','');logs.forEach(l=>rows.push([date,l.name,l.type==='food'?'Ăn':'Vận động',l.cal,l.time||'']))});
-  const csv=rows.map(r=>r.map(c=>'"'+c+'"').join(',')).join('\n');const blob=new Blob(['\uFEFF'+csv],{type:'text/csv;charset=utf-8'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='yumlog-data-'+new Date().toISOString().slice(0,10)+'.csv';a.click();
+  const rows=[LANG==='vi'?['Ngày','Tên','Loại','Calo','Giờ']:['Date','Name','Type','Calories','Time']];const keys=Object.keys(localStorage).filter(k=>k.startsWith('yl_2')).sort().reverse();
+  keys.forEach(k=>{const logs=getLogs(k);const date=k.replace('yl_','');logs.forEach(l=>rows.push([date,l.name,l.type==='food'?t('an'):t('vandong'),l.cal,l.time||'']))});
+  const csv=rows.map(r=>r.map(c=>'"'+c+'"').join(',')).join('\n');
+  const blob=new Blob(['\uFEFF'+csv],{type:'text/csv;charset=utf-8'});
+  const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='yumlog-data-'+new Date().toISOString().slice(0,10)+'.csv';a.click();
 }
+
 document.getElementById('inp-cal').addEventListener('keydown',e=>{if(e.key==='Enter')saveItem()});
-document.getElementById('ai-question').addEventListener('keydown',e=>{if(e.key==='Enter')sendAnalysis()});
+document.getElementById('ai-question').addEventListener('keydown',e=>{if(e.key==='Enter'&&!e.isComposing){e.preventDefault();sendAnalysis();}});
+document.getElementById('edit-inp-cal').addEventListener('keydown',e=>{if(e.key==='Enter')addEditDayItem()});
 buildQuick('food');
+applyLanguage();
 renderToday();
-// Check for Google OAuth callback
-handleOAuthCallback();
-// Restore saved Google session
-try{const saved=localStorage.getItem('yl_guser');if(saved){gUser=JSON.parse(saved);updateUserUI(gUser);refreshGreeting();}}catch(e){}
-const _p=getProfile();if(_p.tdee)showTDEE(_p.tdee,_p.weight,_p.height,_p.goalDelta||-500);
+const _p=getProfile();
+if(_p.tdee)showTDEE(_p.tdee,_p.weight,_p.height,_p.goalDelta||-500);
+if(_p.name){
+  document.getElementById('prof-name-text').textContent=_p.name;
+  const init=_p.name.split(' ').map(w=>w[0]).join('').slice(0,2).toUpperCase();
+  document.getElementById('user-avatar').textContent=init;
+}
 </script>
 </body>
 </html>

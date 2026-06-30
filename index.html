@@ -269,9 +269,10 @@ body{display:flex;flex-direction:column}
 .api-inp:focus{border-color:var(--gold)}
 .api-save-btn{width:100%;height:39px;border-radius:10px;background:var(--surface3);color:var(--text2);font-size:13px;font-weight:600;border:none;cursor:pointer;margin-top:7px}
 .api-save-btn:active{background:var(--gold-dim);color:var(--gold)}
+.api-status button{background:none;border:none;font-size:11px;color:var(--text3);cursor:pointer}
 .api-status{display:none;align-items:center;gap:8px;margin-bottom:10px;padding:8px 11px;background:var(--green-dim);border-radius:9px}
+.api-status-actions{margin-left:auto;display:flex;gap:8px}
 .api-status span{font-size:13px;color:var(--green);font-weight:600}
-.api-status button{margin-left:auto;background:none;border:none;font-size:11px;color:var(--text3);cursor:pointer}
 .export-btn{width:100%;height:44px;border-radius:11px;border:1.5px solid var(--border2);background:var(--surface);color:var(--text2);font-size:13.5px;font-weight:600;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;box-shadow:var(--shadow)}
 .export-btn:active{background:var(--surface2)}
 .export-btn svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
@@ -570,13 +571,19 @@ body{display:flex;flex-direction:column}
     <div class="card-title" style="margin-bottom:8px" data-i18n="gemini_aikey">🤖 Gemini AI (miễn phí)</div>
     <div class="api-status" id="api-key-status">
       <span id="api-key-status-text" data-i18n="daketnoi_gemini">✓ Đã kết nối Gemini AI</span>
-      <button onclick="resetApiKey()" data-i18n="doi_key">Đổi key</button>
+      <div class="api-status-actions">
+        <button onclick="resetApiKey()" data-i18n="doi_key">Đổi key</button>
+        <button onclick="collapseApiBox()" id="collapse-api-btn" data-i18n="an_di">Ẩn</button>
+      </div>
     </div>
     <div id="api-key-form">
       <div class="api-note"><span data-i18n="apinote">Dùng để scan ảnh & phân tích dinh dưỡng. Miễn phí, không cần thẻ! Lấy key tại</span> <a href="https://aistudio.google.com/apikey" target="_blank">aistudio.google.com/apikey</a> <span data-i18n="apinote2">→ đăng nhập Google → Create API key.</span></div>
       <input class="api-inp" id="api-key-inp" type="password" placeholder="Dán API key Gemini vào đây..." data-i18n-ph="ph_apikey" onblur="autoSaveApiKey(this.value)"/>
       <button class="api-save-btn" onclick="saveApiKey()" data-i18n="luu_apikey">Lưu API Key ✓</button>
     </div>
+  </div>
+  <div id="api-box-collapsed-link" style="display:none;text-align:center;margin:-4px 0 11px">
+    <button onclick="expandApiBox()" style="background:none;border:none;color:var(--text3);font-size:12px;cursor:pointer;text-decoration:underline">⚙️ <span data-i18n="gemini_aikey">Gemini AI (miễn phí)</span></button>
   </div>
 
   <div class="card">
@@ -744,7 +751,7 @@ const I18N={
     chonmt:'Chọn mục tiêu', giamnhe:'Giảm nhẹ', giamvua:'Giảm vừa', giamnhanh:'Giảm nhanh', duytri:'Duy trì', tangco:'Tăng cơ',
     sub_giamnhe:'~0.3 kg/tuần', sub_giamvua:'~0.5 kg/tuần', sub_giamnhanh:'~1 kg/tuần', sub_duytri:'Giữ cân hiện tại', sub_tangco:'Tăng khối lượng',
     nap_kcalngay:'Nạp ~', kcalngay:'kcal/ngày',
-    gemini_aikey:'🤖 Gemini AI (miễn phí)', daketnoi_gemini:'✓ Đã kết nối Gemini AI', doi_key:'Đổi key',
+    gemini_aikey:'🤖 Gemini AI (miễn phí)', daketnoi_gemini:'✓ Đã kết nối Gemini AI', doi_key:'Đổi key', an_di:'Ẩn',
     apinote:'Dùng để scan ảnh & phân tích dinh dưỡng. Miễn phí, không cần thẻ! Lấy key tại', apinote2:'→ đăng nhập Google → Create API key.',
     ph_apikey:'Dán API key Gemini vào đây...', luu_apikey:'Lưu API Key ✓',
     dulieu_xuatfile:'Dữ liệu & xuất file', tai_json:'Tải dữ liệu về (.json)', tai_csv:'Tải dữ liệu về (.csv)',
@@ -797,7 +804,7 @@ const I18N={
     chonmt:'Choose your goal', giamnhe:'Mild loss', giamvua:'Moderate loss', giamnhanh:'Fast loss', duytri:'Maintain', tangco:'Build muscle',
     sub_giamnhe:'~0.3 kg/week', sub_giamvua:'~0.5 kg/week', sub_giamnhanh:'~1 kg/week', sub_duytri:'Keep current weight', sub_tangco:'Increase mass',
     nap_kcalngay:'Eat ~', kcalngay:'kcal/day',
-    gemini_aikey:'🤖 Gemini AI (free)', daketnoi_gemini:'✓ Connected to Gemini AI', doi_key:'Change key',
+    gemini_aikey:'🤖 Gemini AI (free)', daketnoi_gemini:'✓ Connected to Gemini AI', doi_key:'Change key', an_di:'Hide',
     apinote:'Used for photo scan & nutrition analysis. Free, no card needed! Get a key at', apinote2:'→ sign in with Google → Create API key.',
     ph_apikey:'Paste your Gemini API key here...', luu_apikey:'Save API Key ✓',
     dulieu_xuatfile:'Data & export', tai_json:'Download data (.json)', tai_csv:'Download data (.csv)',
@@ -842,7 +849,7 @@ function getProfile(){try{return JSON.parse(localStorage.getItem('yl_profile')||
 function saveProfile(p){localStorage.setItem('yl_profile',JSON.stringify(p))}
 // ⚠️ Dán API key Gemini của bạn vào giữa hai dấu nháy đơn dưới đây.
 // Vì repo này là Public, key sẽ hiển thị công khai cho bất kỳ ai xem source trang web.
-const HARDCODED_GEMINI_KEY='AQ.Ab8RN6I0ejvES7bUSiTdYT5KRlQ7Bb43Ua-nX6TKRITsgQzDDw';
+const HARDCODED_GEMINI_KEY='';
 function getApiKey(){return HARDCODED_GEMINI_KEY||localStorage.getItem('yl_apikey_gemini')||''}
 
 async function fetchGeminiWithRetry(body,key,onRetry){
@@ -1362,7 +1369,11 @@ function loadProfile(){
   if(HARDCODED_GEMINI_KEY){
     document.getElementById('api-box-section').style.display='none';
   }else{
-    const k=getApiKey();if(k){showApiKeyConnected()}
+    const k=getApiKey();
+    if(k){
+      showApiKeyConnected();
+      if(localStorage.getItem('yl_apikey_collapsed')==='1') collapseApiBox(true);
+    }
   }
   if(p.tdee)showTDEE(p.tdee,p.weight,p.height,p.goalDelta||selectedGoal);
   if(p.name){
@@ -1410,7 +1421,7 @@ function saveApiKey(){
   showApiKeyConnected();
 }
 function showApiKeyConnected(){
-  document.getElementById('api-key-status-text').textContent='✓ Đã kết nối Gemini AI';
+  document.getElementById('api-key-status-text').textContent=t('daketnoi_gemini');
   document.getElementById('api-key-status').style.display='flex';
   document.getElementById('api-key-form').style.display='none';
 }
@@ -1418,6 +1429,17 @@ function resetApiKey(){
   document.getElementById('api-key-status').style.display='none';
   document.getElementById('api-key-form').style.display='block';
   document.getElementById('api-key-inp').value='';
+  localStorage.removeItem('yl_apikey_collapsed');
+}
+function collapseApiBox(silent){
+  document.getElementById('api-box-section').style.display='none';
+  document.getElementById('api-box-collapsed-link').style.display='block';
+  localStorage.setItem('yl_apikey_collapsed','1');
+}
+function expandApiBox(){
+  document.getElementById('api-box-section').style.display='block';
+  document.getElementById('api-box-collapsed-link').style.display='none';
+  localStorage.removeItem('yl_apikey_collapsed');
 }
 
 function exportJSON(){

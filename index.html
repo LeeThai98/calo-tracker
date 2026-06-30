@@ -582,9 +582,6 @@ body{display:flex;flex-direction:column}
       <button class="api-save-btn" onclick="saveApiKey()" data-i18n="luu_apikey">Lưu API Key ✓</button>
     </div>
   </div>
-  <div id="api-box-collapsed-link" style="display:none;text-align:center;margin:-4px 0 11px">
-    <button onclick="expandApiBox()" style="background:none;border:none;color:var(--text3);font-size:12px;cursor:pointer;text-decoration:underline">⚙️ <span data-i18n="gemini_aikey">Gemini AI (miễn phí)</span></button>
-  </div>
 
   <div class="card">
     <div class="card-title" data-i18n="dulieu_xuatfile">Dữ liệu & xuất file</div>
@@ -592,10 +589,16 @@ body{display:flex;flex-direction:column}
       <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
       <span data-i18n="tai_json">Tải dữ liệu về (.json)</span>
     </button>
-    <button class="export-btn" onclick="exportCSV()">
+    <button class="export-btn" onclick="exportCSV()" style="margin-bottom:8px">
       <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
       <span data-i18n="tai_csv">Tải dữ liệu về (.csv)</span>
     </button>
+    <label class="export-btn" style="cursor:pointer">
+      <svg viewBox="0 0 24 24" style="width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+      <span data-i18n="nhap_json">Nhập dữ liệu từ file (.json)</span>
+      <input type="file" accept=".json" onchange="importJSON(event)" style="display:none"/>
+    </label>
+    <div id="import-msg" style="display:none;margin-top:9px;padding:9px 12px;border-radius:9px;font-size:13px;font-weight:600"></div>
   </div>
 
 </div>
@@ -754,7 +757,7 @@ const I18N={
     gemini_aikey:'🤖 Gemini AI (miễn phí)', daketnoi_gemini:'✓ Đã kết nối Gemini AI', doi_key:'Đổi key', an_di:'Ẩn',
     apinote:'Dùng để scan ảnh & phân tích dinh dưỡng. Miễn phí, không cần thẻ! Lấy key tại', apinote2:'→ đăng nhập Google → Create API key.',
     ph_apikey:'Dán API key Gemini vào đây...', luu_apikey:'Lưu API Key ✓',
-    dulieu_xuatfile:'Dữ liệu & xuất file', tai_json:'Tải dữ liệu về (.json)', tai_csv:'Tải dữ liệu về (.csv)',
+    dulieu_xuatfile:'Dữ liệu & xuất file', tai_json:'Tải dữ liệu về (.json)', tai_csv:'Tải dữ liệu về (.csv)', nhap_json:'Nhập dữ liệu từ file (.json)',
   },
   en:{
     greet_morning:'Good morning ☀️', greet_afternoon:'Good afternoon 🌤️', greet_evening:'Good evening 🌙', greet_night:'Good evening 🌙',
@@ -807,7 +810,7 @@ const I18N={
     gemini_aikey:'🤖 Gemini AI (free)', daketnoi_gemini:'✓ Connected to Gemini AI', doi_key:'Change key', an_di:'Hide',
     apinote:'Used for photo scan & nutrition analysis. Free, no card needed! Get a key at', apinote2:'→ sign in with Google → Create API key.',
     ph_apikey:'Paste your Gemini API key here...', luu_apikey:'Save API Key ✓',
-    dulieu_xuatfile:'Data & export', tai_json:'Download data (.json)', tai_csv:'Download data (.csv)',
+    dulieu_xuatfile:'Data & export', tai_json:'Download data (.json)', tai_csv:'Download data (.csv)', nhap_json:'Import data from file (.json)',
   }
 };
 let LANG=localStorage.getItem('yl_lang')||'vi';
@@ -1372,7 +1375,7 @@ function loadProfile(){
     const k=getApiKey();
     if(k){
       showApiKeyConnected();
-      if(localStorage.getItem('yl_apikey_collapsed')==='1') collapseApiBox(true);
+      if(localStorage.getItem('yl_apikey_collapsed')==='1') collapseApiBox();
     }
   }
   if(p.tdee)showTDEE(p.tdee,p.weight,p.height,p.goalDelta||selectedGoal);
@@ -1431,21 +1434,38 @@ function resetApiKey(){
   document.getElementById('api-key-inp').value='';
   localStorage.removeItem('yl_apikey_collapsed');
 }
-function collapseApiBox(silent){
+function collapseApiBox(){
   document.getElementById('api-box-section').style.display='none';
-  document.getElementById('api-box-collapsed-link').style.display='block';
   localStorage.setItem('yl_apikey_collapsed','1');
-}
-function expandApiBox(){
-  document.getElementById('api-box-section').style.display='block';
-  document.getElementById('api-box-collapsed-link').style.display='none';
-  localStorage.removeItem('yl_apikey_collapsed');
 }
 
 function exportJSON(){
   const keys=Object.keys(localStorage).filter(k=>k.startsWith('yl_'));const data={};keys.forEach(k=>data[k]=localStorage.getItem(k));
   const blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'});
   const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='yumlog-data-'+new Date().toISOString().slice(0,10)+'.json';a.click();
+}
+function importJSON(e){
+  const file=e.target.files[0];if(!file)return;
+  const reader=new FileReader();
+  reader.onload=ev=>{
+    const msg=document.getElementById('import-msg');
+    try{
+      const data=JSON.parse(ev.target.result);
+      const keys=Object.keys(data).filter(k=>k.startsWith('yl_'));
+      if(!keys.length){throw new Error('empty')}
+      keys.forEach(k=>localStorage.setItem(k,data[k]));
+      msg.style.display='block';
+      msg.style.background='var(--green-dim)';msg.style.color='var(--green)';
+      msg.textContent=(LANG==='vi'?'✓ Đã nhập '+keys.length+' mục dữ liệu! Đang tải lại...':'✓ Imported '+keys.length+' data entries! Reloading...');
+      setTimeout(()=>location.reload(),1200);
+    }catch(err){
+      msg.style.display='block';
+      msg.style.background='var(--red-dim)';msg.style.color='var(--red)';
+      msg.textContent=LANG==='vi'?'File không hợp lệ, vui lòng chọn đúng file đã xuất từ YumLog.':'Invalid file, please select a file exported from YumLog.';
+    }
+  };
+  reader.readAsText(file);
+  e.target.value='';
 }
 function exportCSV(){
   const rows=[LANG==='vi'?['Ngày','Tên','Loại','Calo','Giờ']:['Date','Name','Type','Calories','Time']];const keys=Object.keys(localStorage).filter(k=>k.startsWith('yl_2')).sort().reverse();
